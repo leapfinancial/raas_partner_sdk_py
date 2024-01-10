@@ -6,8 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **correlation_id** | **str** |  | 
 **source_payment_method** | [**RaaSPaymentMethod**](RaaSPaymentMethod.md) |  | 
+**destination_payment_method** | [**RaaSPaymentMethod**](RaaSPaymentMethod.md) |  | [optional] 
 **amount** | **float** |  | 
 **currency** | **str** |  | 
+**code** | **str** |  | [optional] 
+**status** | **str** |  | [optional] 
 **sender_amount** | **float** |  | 
 **sender_currency** | **str** |  | 
 **recipient_amount** | **float** |  | 
@@ -19,16 +22,29 @@ Name | Type | Description | Notes
 **exchange_rate** | **float** |  | 
 **call_location_longitude** | **float** |  | 
 **call_location_latitude** | **float** |  | 
-**send_to** | **str** |  | 
-**destination_payment_method** | [**RaaSPaymentMethod**](RaaSPaymentMethod.md) |  | [optional] 
-**code** | **str** |  | [optional] 
-**status** | **str** |  | [optional] 
 **reason** | **str** |  | [optional] 
 **tenant_id** | **str** |  | [optional] 
 **user_tenant_id** | **str** |  | [optional] 
 **tenant_fee** | **float** |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**send_to** | **str** |  | 
 
+## Example
+
+```python
+from openapi_client.models.send_money_params import SendMoneyParams
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of SendMoneyParams from a JSON string
+send_money_params_instance = SendMoneyParams.from_json(json)
+# print the JSON string representation of the object
+print SendMoneyParams.to_json()
+
+# convert the object into a dict
+send_money_params_dict = send_money_params_instance.to_dict()
+# create an instance of SendMoneyParams from a dict
+send_money_params_form_dict = send_money_params.from_dict(send_money_params_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

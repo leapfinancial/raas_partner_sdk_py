@@ -12,6 +12,23 @@ Name | Type | Description | Notes
 **country** | **str** |  | 
 **currency** | **str** |  | [optional] 
 
+## Example
+
+```python
+from openapi_client.models.add_bank_account_params_base import AddBankAccountParamsBase
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of AddBankAccountParamsBase from a JSON string
+add_bank_account_params_base_instance = AddBankAccountParamsBase.from_json(json)
+# print the JSON string representation of the object
+print AddBankAccountParamsBase.to_json()
+
+# convert the object into a dict
+add_bank_account_params_base_dict = add_bank_account_params_base_instance.to_dict()
+# create an instance of AddBankAccountParamsBase from a dict
+add_bank_account_params_base_form_dict = add_bank_account_params_base.from_dict(add_bank_account_params_base_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

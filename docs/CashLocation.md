@@ -18,6 +18,23 @@ Name | Type | Description | Notes
 **phone** | **str** |  | 
 **image** | **str** |  | 
 
+## Example
+
+```python
+from openapi_client.models.cash_location import CashLocation
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of CashLocation from a JSON string
+cash_location_instance = CashLocation.from_json(json)
+# print the JSON string representation of the object
+print CashLocation.to_json()
+
+# convert the object into a dict
+cash_location_dict = cash_location_instance.to_dict()
+# create an instance of CashLocation from a dict
+cash_location_form_dict = cash_location.from_dict(cash_location_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

@@ -7,8 +7,24 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **phone** | **str** |  | 
 **otp_code** | **str** |  | 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from openapi_client.models.pick_validate_otp_params_exclude_keyof_validate_otp_params_device_id import PickValidateOTPParamsExcludeKeyofValidateOTPParamsDeviceId
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of PickValidateOTPParamsExcludeKeyofValidateOTPParamsDeviceId from a JSON string
+pick_validate_otp_params_exclude_keyof_validate_otp_params_device_id_instance = PickValidateOTPParamsExcludeKeyofValidateOTPParamsDeviceId.from_json(json)
+# print the JSON string representation of the object
+print PickValidateOTPParamsExcludeKeyofValidateOTPParamsDeviceId.to_json()
+
+# convert the object into a dict
+pick_validate_otp_params_exclude_keyof_validate_otp_params_device_id_dict = pick_validate_otp_params_exclude_keyof_validate_otp_params_device_id_instance.to_dict()
+# create an instance of PickValidateOTPParamsExcludeKeyofValidateOTPParamsDeviceId from a dict
+pick_validate_otp_params_exclude_keyof_validate_otp_params_device_id_form_dict = pick_validate_otp_params_exclude_keyof_validate_otp_params_device_id.from_dict(pick_validate_otp_params_exclude_keyof_validate_otp_params_device_id_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

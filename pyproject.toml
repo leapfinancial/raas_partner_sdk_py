@@ -1,0 +1,33 @@
+[project]
+name = "rasspy"
+version = "0.0.1"
+authors = [
+  { name="Jorge Trujillo", email="jorge@leapfinancial.com" },
+]
+description = "This project is a Python SDK for the lola kraken API. It is intended to be used by developers who want to integrate Lola into their own applications."
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    python_dateutil >= 2.5.3
+    setuptools >= 21.0.0
+    urllib3 >= 1.25.3, < 2.1.0
+    pydantic >= 1.10.5, < 2
+    aenum >= 3.1.11
+  
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages]
+find = {}  # Scan the project directory with the default parameters
+
+[project.urls]
+"Homepage" = "https://github.com/alejamp/lola-py-sdk/"
+"Bug Tracker" = "https://github.com/alejamp/lola-py-sdk/issues"

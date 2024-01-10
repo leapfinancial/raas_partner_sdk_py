@@ -9,8 +9,24 @@ Name | Type | Description | Notes
 **error_face_match_not_valid** | **str** |  | [optional] 
 **error_photo_scan_id_required** | **str** |  | [optional] 
 **error_ocr_profile_match_not_valid** | **str** |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from openapi_client.models.errors_cip_process import ErrorsCIPProcess
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of ErrorsCIPProcess from a JSON string
+errors_cip_process_instance = ErrorsCIPProcess.from_json(json)
+# print the JSON string representation of the object
+print ErrorsCIPProcess.to_json()
+
+# convert the object into a dict
+errors_cip_process_dict = errors_cip_process_instance.to_dict()
+# create an instance of ErrorsCIPProcess from a dict
+errors_cip_process_form_dict = errors_cip_process.from_dict(errors_cip_process_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

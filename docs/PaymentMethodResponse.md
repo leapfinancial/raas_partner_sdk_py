@@ -12,8 +12,24 @@ Name | Type | Description | Notes
 **country** | **str** |  | [optional] 
 **number** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from openapi_client.models.payment_method_response import PaymentMethodResponse
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of PaymentMethodResponse from a JSON string
+payment_method_response_instance = PaymentMethodResponse.from_json(json)
+# print the JSON string representation of the object
+print PaymentMethodResponse.to_json()
+
+# convert the object into a dict
+payment_method_response_dict = payment_method_response_instance.to_dict()
+# create an instance of PaymentMethodResponse from a dict
+payment_method_response_form_dict = payment_method_response.from_dict(payment_method_response_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

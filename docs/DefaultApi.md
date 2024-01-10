@@ -60,14 +60,14 @@ adds bank account to subscriber's source of funding
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.inline_response400 import InlineResponse400
-from openapi_client.model.add_bank_account_params_base import AddBankAccountParamsBase
+from openapi_client.models.add_bank_account_params_base import AddBankAccountParamsBase
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -80,7 +80,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -88,32 +88,24 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | 
-    add_bank_account_params_base = AddBankAccountParamsBase(
-        name="name_example",
-        account_number="account_number_example",
-        bank_account_type="CheckingAccount",
-        bank_entity_number="bank_entity_number_example",
-        is_primary=True,
-        country="country_example",
-        currency="currency_example",
-    ) # AddBankAccountParamsBase | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | 
+    add_bank_account_params_base = openapi_client.AddBankAccountParamsBase() # AddBankAccountParamsBase | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_instance.add_bank_account(user_token, add_bank_account_params_base)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->add_bank_account: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**|  |
- **add_bank_account_params_base** | [**AddBankAccountParamsBase**](AddBankAccountParamsBase.md)|  |
+ **user_token** | **str**|  | 
+ **add_bank_account_params_base** | [**AddBankAccountParamsBase**](AddBankAccountParamsBase.md)|  | 
 
 ### Return type
 
@@ -128,9 +120,7 @@ void (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -150,16 +140,15 @@ adds a card to subscriber's source of funding
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.inline_response403 import InlineResponse403
-from openapi_client.model.add_payment_method_response import AddPaymentMethodResponse
-from openapi_client.model.add_card_partner_params import AddCardPartnerParams
-from openapi_client.model.inline_response400 import InlineResponse400
+from openapi_client.models.add_card_partner_params import AddCardPartnerParams
+from openapi_client.models.add_payment_method_response import AddPaymentMethodResponse
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -172,7 +161,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -180,36 +169,26 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | 
-    add_card_partner_params = AddCardPartnerParams(
-        name="name_example",
-        cardtype="DebitCard",
-        number="number_example",
-        is_primary=True,
-        name_on_card="name_on_card_example",
-        expiration_date="expiration_date_example",
-        security_code="security_code_example",
-        currency="currency_example",
-        country="country_example",
-        card_network="NotApplicable",
-    ) # AddCardPartnerParams | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | 
+    add_card_partner_params = openapi_client.AddCardPartnerParams() # AddCardPartnerParams | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.add_card(user_token, add_card_partner_params)
+        print("The response of DefaultApi->add_card:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->add_card: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**|  |
- **add_card_partner_params** | [**AddCardPartnerParams**](AddCardPartnerParams.md)|  |
+ **user_token** | **str**|  | 
+ **add_card_partner_params** | [**AddCardPartnerParams**](AddCardPartnerParams.md)|  | 
 
 ### Return type
 
@@ -224,9 +203,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -245,15 +222,14 @@ Create a contact for a user
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.create_contact_request_params_partner import CreateContactRequestParamsPartner
-from openapi_client.model.inline_response403 import InlineResponse403
-from openapi_client.model.validate_error import ValidateError
+from openapi_client.models.create_contact_request_params_partner import CreateContactRequestParamsPartner
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -266,7 +242,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -274,31 +250,24 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | User token, used to retrieve the user's contacts. A.k.a. userId.
-    create_contact_request_params_partner = CreateContactRequestParamsPartner(
-        alias="alias_example",
-        country_code=CountryAlpha2Code("AF"),
-        phone="phone_example",
-        last_name="last_name_example",
-        first_name="first_name_example",
-        email="email_example",
-    ) # CreateContactRequestParamsPartner | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | User token, used to retrieve the user's contacts. A.k.a. userId.
+    create_contact_request_params_partner = openapi_client.CreateContactRequestParamsPartner() # CreateContactRequestParamsPartner | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_instance.create_contact(user_token, create_contact_request_params_partner)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->create_contact: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**| User token, used to retrieve the user&#39;s contacts. A.k.a. userId. |
- **create_contact_request_params_partner** | [**CreateContactRequestParamsPartner**](CreateContactRequestParamsPartner.md)|  |
+ **user_token** | **str**| User token, used to retrieve the user&#39;s contacts. A.k.a. userId. | 
+ **create_contact_request_params_partner** | [**CreateContactRequestParamsPartner**](CreateContactRequestParamsPartner.md)|  | 
 
 ### Return type
 
@@ -313,9 +282,7 @@ void (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Created |  -  |
@@ -335,14 +302,14 @@ Creates a pincode for the user.  The pincode must be 6 digits long and only nume
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.inline_response403 import InlineResponse403
-from openapi_client.model.set_pincode_params_partner import SetPincodeParamsPartner
+from openapi_client.models.set_pincode_params_partner import SetPincodeParamsPartner
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -355,7 +322,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -363,22 +330,22 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    set_pincode_params_partner = SetPincodeParamsPartner(None) # SetPincodeParamsPartner | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    set_pincode_params_partner = openapi_client.SetPincodeParamsPartner() # SetPincodeParamsPartner | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_instance.create_pin(set_pincode_params_partner)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->create_pin: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **set_pincode_params_partner** | [**SetPincodeParamsPartner**](SetPincodeParamsPartner.md)|  |
+ **set_pincode_params_partner** | [**SetPincodeParamsPartner**](SetPincodeParamsPartner.md)|  | 
 
 ### Return type
 
@@ -393,9 +360,7 @@ void (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Created |  -  |
@@ -414,13 +379,13 @@ removes a payment method
 
 ### Example
 
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.inline_response400 import InlineResponse400
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -429,26 +394,26 @@ configuration = openapi_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
+with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | 
-    payment_method_id = "paymentMethodId_example" # str | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | 
+    payment_method_id = 'payment_method_id_example' # str | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_instance.delete_payment_method(user_token, payment_method_id)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->delete_payment_method: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**|  |
- **payment_method_id** | **str**|  |
+ **user_token** | **str**|  | 
+ **payment_method_id** | **str**|  | 
 
 ### Return type
 
@@ -463,9 +428,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -475,7 +438,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_available_operation_type**
-> [str] get_available_operation_type(user_token)
+> List[str] get_available_operation_type(user_token, destination_country=destination_country)
 
 
 
@@ -484,13 +447,13 @@ Gets available operation types by user country (as source country) and destinati
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.inline_response400 import InlineResponse400
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -503,7 +466,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -511,37 +474,30 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | 
-    destination_country = "destinationCountry_example" # str | ISO 3166 2-alpha (optional)
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | 
+    destination_country = 'destination_country_example' # str | ISO 3166 2-alpha (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.get_available_operation_type(user_token)
-        pprint(api_response)
-    except openapi_client.ApiException as e:
-        print("Exception when calling DefaultApi->get_available_operation_type: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         api_response = api_instance.get_available_operation_type(user_token, destination_country=destination_country)
+        print("The response of DefaultApi->get_available_operation_type:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->get_available_operation_type: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**|  |
- **destination_country** | **str**| ISO 3166 2-alpha | [optional]
+ **user_token** | **str**|  | 
+ **destination_country** | **str**| ISO 3166 2-alpha | [optional] 
 
 ### Return type
 
-**[str]**
+**List[str]**
 
 ### Authorization
 
@@ -552,9 +508,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | string[] |  -  |
@@ -563,7 +517,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_available_payment_methods**
-> [str] get_available_payment_methods(user_token)
+> List[str] get_available_payment_methods(user_token, destination_country=destination_country, operation_type=operation_type)
 
 
 
@@ -572,13 +526,13 @@ Gets available payment method types by source country, destination country and o
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.inline_response400 import InlineResponse400
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -591,7 +545,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -599,39 +553,32 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | 
-    destination_country = "destinationCountry_example" # str | ISO 3166 2-alpha (optional)
-    operation_type = "SendFunds" # str | SendFunds | RequestFunds (optional) if omitted the server will use the default value of "SendFunds"
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | 
+    destination_country = 'destination_country_example' # str | ISO 3166 2-alpha (optional)
+    operation_type = 'SendFunds' # str | SendFunds | RequestFunds (optional) (default to 'SendFunds')
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.get_available_payment_methods(user_token)
-        pprint(api_response)
-    except openapi_client.ApiException as e:
-        print("Exception when calling DefaultApi->get_available_payment_methods: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         api_response = api_instance.get_available_payment_methods(user_token, destination_country=destination_country, operation_type=operation_type)
+        print("The response of DefaultApi->get_available_payment_methods:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->get_available_payment_methods: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**|  |
- **destination_country** | **str**| ISO 3166 2-alpha | [optional]
- **operation_type** | **str**| SendFunds | RequestFunds | [optional] if omitted the server will use the default value of "SendFunds"
+ **user_token** | **str**|  | 
+ **destination_country** | **str**| ISO 3166 2-alpha | [optional] 
+ **operation_type** | **str**| SendFunds | RequestFunds | [optional] [default to &#39;SendFunds&#39;]
 
 ### Return type
 
-**[str]**
+**List[str]**
 
 ### Authorization
 
@@ -642,9 +589,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | string[] |  -  |
@@ -653,22 +598,22 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_cash_operators**
-> [CashOperators] get_cash_operators(user_token, cash_operators_params_base)
+> List[CashOperators] get_cash_operators(user_token, cash_operators_params_base)
 
 
 
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.inline_response403 import InlineResponse403
-from openapi_client.model.cash_operators_params_base import CashOperatorsParamsBase
-from openapi_client.model.cash_operators import CashOperators
+from openapi_client.models.cash_operators import CashOperators
+from openapi_client.models.cash_operators_params_base import CashOperatorsParamsBase
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -681,7 +626,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -689,31 +634,30 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | 
-    cash_operators_params_base = CashOperatorsParamsBase(
-        operation_ammount=3.14,
-    ) # CashOperatorsParamsBase | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | 
+    cash_operators_params_base = openapi_client.CashOperatorsParamsBase() # CashOperatorsParamsBase | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_cash_operators(user_token, cash_operators_params_base)
+        print("The response of DefaultApi->get_cash_operators:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->get_cash_operators: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**|  |
- **cash_operators_params_base** | [**CashOperatorsParamsBase**](CashOperatorsParamsBase.md)|  |
+ **user_token** | **str**|  | 
+ **cash_operators_params_base** | [**CashOperatorsParamsBase**](CashOperatorsParamsBase.md)|  | 
 
 ### Return type
 
-[**[CashOperators]**](CashOperators.md)
+[**List[CashOperators]**](CashOperators.md)
 
 ### Authorization
 
@@ -724,9 +668,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -742,14 +684,14 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.error_response import ErrorResponse
-from openapi_client.model.pick_cip_exclude_keyof_cipid_or_attemps_or_is_valid_ofac import PickCIPExcludeKeyofCIPIdOrAttempsOrIsValidOFAC
+from openapi_client.models.pick_cip_exclude_keyof_cipid_or_attemps_or_is_valid_ofac import PickCIPExcludeKeyofCIPIdOrAttempsOrIsValidOFAC
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -762,7 +704,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -770,23 +712,24 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    phone_number = "phoneNumber_example" # str | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    phone_number = 'phone_number_example' # str | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_cip_info(phone_number)
+        print("The response of DefaultApi->get_cip_info:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->get_cip_info: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **phone_number** | **str**|  |
+ **phone_number** | **str**|  | 
 
 ### Return type
 
@@ -801,9 +744,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -813,7 +754,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_corridors**
-> [CorridorDTO] get_corridors()
+> List[CorridorDTO] get_corridors(source_country=source_country, destination_country=destination_country, operation_type=operation_type)
 
 
 
@@ -822,14 +763,14 @@ Gets corridors by source country, destination country and operation type. A corr
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.corridor_dto import CorridorDTO
-from openapi_client.model.inline_response400 import InlineResponse400
+from openapi_client.models.corridor_dto import CorridorDTO
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -842,7 +783,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -850,32 +791,32 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    source_country = "sourceCountry_example" # str | ISO 3166 2-alpha (optional)
-    destination_country = "destinationCountry_example" # str | ISO 3166 2-alpha (optional)
-    operation_type = "SendFunds" # str | SendFunds | RequestFunds (optional) if omitted the server will use the default value of "SendFunds"
+    api_instance = openapi_client.DefaultApi(api_client)
+    source_country = 'source_country_example' # str | ISO 3166 2-alpha (optional)
+    destination_country = 'destination_country_example' # str | ISO 3166 2-alpha (optional)
+    operation_type = 'SendFunds' # str | SendFunds | RequestFunds (optional) (default to 'SendFunds')
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         api_response = api_instance.get_corridors(source_country=source_country, destination_country=destination_country, operation_type=operation_type)
+        print("The response of DefaultApi->get_corridors:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->get_corridors: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **source_country** | **str**| ISO 3166 2-alpha | [optional]
- **destination_country** | **str**| ISO 3166 2-alpha | [optional]
- **operation_type** | **str**| SendFunds | RequestFunds | [optional] if omitted the server will use the default value of "SendFunds"
+ **source_country** | **str**| ISO 3166 2-alpha | [optional] 
+ **destination_country** | **str**| ISO 3166 2-alpha | [optional] 
+ **operation_type** | **str**| SendFunds | RequestFunds | [optional] [default to &#39;SendFunds&#39;]
 
 ### Return type
 
-[**[CorridorDTO]**](CorridorDTO.md)
+[**List[CorridorDTO]**](CorridorDTO.md)
 
 ### Authorization
 
@@ -886,9 +827,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | CorridorDTO[] |  -  |
@@ -897,7 +836,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_destination_sof_for_requet_money_operation**
-> [SourceOfFunding] get_destination_sof_for_requet_money_operation(user_token)
+> List[SourceOfFunding] get_destination_sof_for_requet_money_operation(user_token, source_country=source_country, destination_country=destination_country)
 
 
 
@@ -906,14 +845,14 @@ gets destination sources of funding for request funds
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.source_of_funding import SourceOfFunding
-from openapi_client.model.inline_response400 import InlineResponse400
+from openapi_client.models.source_of_funding import SourceOfFunding
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -926,7 +865,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -934,39 +873,32 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | 
-    source_country = "sourceCountry_example" # str |  (optional)
-    destination_country = "destinationCountry_example" # str |  (optional)
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | 
+    source_country = 'source_country_example' # str |  (optional)
+    destination_country = 'destination_country_example' # str |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.get_destination_sof_for_requet_money_operation(user_token)
-        pprint(api_response)
-    except openapi_client.ApiException as e:
-        print("Exception when calling DefaultApi->get_destination_sof_for_requet_money_operation: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         api_response = api_instance.get_destination_sof_for_requet_money_operation(user_token, source_country=source_country, destination_country=destination_country)
+        print("The response of DefaultApi->get_destination_sof_for_requet_money_operation:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->get_destination_sof_for_requet_money_operation: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**|  |
- **source_country** | **str**|  | [optional]
- **destination_country** | **str**|  | [optional]
+ **user_token** | **str**|  | 
+ **source_country** | **str**|  | [optional] 
+ **destination_country** | **str**|  | [optional] 
 
 ### Return type
 
-[**[SourceOfFunding]**](SourceOfFunding.md)
+[**List[SourceOfFunding]**](SourceOfFunding.md)
 
 ### Authorization
 
@@ -977,9 +909,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -988,7 +918,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_exchange_rates**
-> [ExchangeRateDTO] get_exchange_rates()
+> List[ExchangeRateDTO] get_exchange_rates(currency_code_src=currency_code_src, currency_code_dest=currency_code_dest)
 
 
 
@@ -997,14 +927,14 @@ Gets exchange rates between currencies
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.exchange_rate_dto import ExchangeRateDTO
-from openapi_client.model.inline_response400 import InlineResponse400
+from openapi_client.models.exchange_rate_dto import ExchangeRateDTO
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -1017,7 +947,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -1025,30 +955,30 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    currency_code_src = "currencyCodeSrc_example" # str | ISO 4217 3-alpha (optional)
-    currency_code_dest = "currencyCodeDest_example" # str | ISO 4217 3-alpha (optional)
+    api_instance = openapi_client.DefaultApi(api_client)
+    currency_code_src = 'currency_code_src_example' # str | ISO 4217 3-alpha (optional)
+    currency_code_dest = 'currency_code_dest_example' # str | ISO 4217 3-alpha (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         api_response = api_instance.get_exchange_rates(currency_code_src=currency_code_src, currency_code_dest=currency_code_dest)
+        print("The response of DefaultApi->get_exchange_rates:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->get_exchange_rates: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **currency_code_src** | **str**| ISO 4217 3-alpha | [optional]
- **currency_code_dest** | **str**| ISO 4217 3-alpha | [optional]
+ **currency_code_src** | **str**| ISO 4217 3-alpha | [optional] 
+ **currency_code_dest** | **str**| ISO 4217 3-alpha | [optional] 
 
 ### Return type
 
-[**[ExchangeRateDTO]**](ExchangeRateDTO.md)
+[**List[ExchangeRateDTO]**](ExchangeRateDTO.md)
 
 ### Authorization
 
@@ -1059,9 +989,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ExchangeRate[] |  -  |
@@ -1070,7 +998,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_in_and_out_operations**
-> [OperationDetailResponse] get_in_and_out_operations(user_token)
+> List[OperationDetailResponse] get_in_and_out_operations(user_token, to_phone_number=to_phone_number)
 
 
 
@@ -1079,14 +1007,14 @@ Return all the in and outs operations for an user given his userId
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.error_response import ErrorResponse
-from openapi_client.model.operation_detail_response import OperationDetailResponse
+from openapi_client.models.operation_detail_response import OperationDetailResponse
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -1099,7 +1027,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -1107,37 +1035,30 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | 
-    to_phone_number = "toPhoneNumber_example" # str |  (optional)
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | 
+    to_phone_number = 'to_phone_number_example' # str |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.get_in_and_out_operations(user_token)
-        pprint(api_response)
-    except openapi_client.ApiException as e:
-        print("Exception when calling DefaultApi->get_in_and_out_operations: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         api_response = api_instance.get_in_and_out_operations(user_token, to_phone_number=to_phone_number)
+        print("The response of DefaultApi->get_in_and_out_operations:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->get_in_and_out_operations: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**|  |
- **to_phone_number** | **str**|  | [optional]
+ **user_token** | **str**|  | 
+ **to_phone_number** | **str**|  | [optional] 
 
 ### Return type
 
-[**[OperationDetailResponse]**](OperationDetailResponse.md)
+[**List[OperationDetailResponse]**](OperationDetailResponse.md)
 
 ### Authorization
 
@@ -1148,9 +1069,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -1169,14 +1088,14 @@ Gets operation detail by id
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.error_response import ErrorResponse
-from openapi_client.model.operation_detail import OperationDetail
+from openapi_client.models.operation_detail import OperationDetail
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -1189,7 +1108,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -1197,23 +1116,24 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    id = "id_example" # str | Operation Id
+    api_instance = openapi_client.DefaultApi(api_client)
+    id = 'id_example' # str | Operation Id
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_operation(id)
+        print("The response of DefaultApi->get_operation:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->get_operation: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| Operation Id |
+ **id** | **str**| Operation Id | 
 
 ### Return type
 
@@ -1228,9 +1148,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -1248,15 +1166,15 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.raas_quote_transaction_response import RaasQuoteTransactionResponse
-from openapi_client.model.quote_transaction_base import QuoteTransactionBase
-from openapi_client.model.inline_response400 import InlineResponse400
+from openapi_client.models.quote_transaction_base import QuoteTransactionBase
+from openapi_client.models.raas_quote_transaction_response import RaasQuoteTransactionResponse
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -1269,7 +1187,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -1277,39 +1195,26 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | 
-    quote_transaction_base = QuoteTransactionBase(
-        sender_user_id="sender_user_id_example",
-        sender_country_code="sender_country_code_example",
-        recipient_user_id="recipient_user_id_example",
-        recipient_country_code="recipient_country_code_example",
-        recipient_currency="recipient_currency_example",
-        recipient_amount=3.14,
-        is_sender_amount=True,
-        amount_currency="amount_currency_example",
-        amount=3.14,
-        operation_type=None,
-        source_payment_method=None,
-        destination_payment_method=None,
-        tennant_fee=3.14,
-    ) # QuoteTransactionBase | {@link QuoteTransactionBase}
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | 
+    quote_transaction_base = openapi_client.QuoteTransactionBase() # QuoteTransactionBase | {@link QuoteTransactionBase}
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_operation_quote(user_token, quote_transaction_base)
+        print("The response of DefaultApi->get_operation_quote:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->get_operation_quote: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**|  |
- **quote_transaction_base** | [**QuoteTransactionBase**](QuoteTransactionBase.md)| {@link QuoteTransactionBase} |
+ **user_token** | **str**|  | 
+ **quote_transaction_base** | [**QuoteTransactionBase**](QuoteTransactionBase.md)| {@link QuoteTransactionBase} | 
 
 ### Return type
 
@@ -1324,9 +1229,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | quotation data |  -  |
@@ -1335,7 +1238,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_payment_method**
-> RaaSPaymentMethod get_payment_method(user_token)
+> RaaSPaymentMethod get_payment_method(user_token, number=number)
 
 
 
@@ -1344,14 +1247,14 @@ Retrieve a payment method by number
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.raa_s_payment_method import RaaSPaymentMethod
-from openapi_client.model.inline_response400 import InlineResponse400
+from openapi_client.models.raa_s_payment_method import RaaSPaymentMethod
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -1364,7 +1267,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -1372,33 +1275,26 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | 
-    number = "" # str |  (optional) if omitted the server will use the default value of ""
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | 
+    number = '' # str |  (optional) (default to '')
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.get_payment_method(user_token)
-        pprint(api_response)
-    except openapi_client.ApiException as e:
-        print("Exception when calling DefaultApi->get_payment_method: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         api_response = api_instance.get_payment_method(user_token, number=number)
+        print("The response of DefaultApi->get_payment_method:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->get_payment_method: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**|  |
- **number** | **str**|  | [optional] if omitted the server will use the default value of ""
+ **user_token** | **str**|  | 
+ **number** | **str**|  | [optional] [default to &#39;&#39;]
 
 ### Return type
 
@@ -1413,9 +1309,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | {@link PaymentMethod} |  -  |
@@ -1424,7 +1318,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_payment_method_v2**
-> RaaSPartnerPaymentMethod get_payment_method_v2(user_token)
+> RaaSPartnerPaymentMethod get_payment_method_v2(user_token, id=id)
 
 
 
@@ -1433,14 +1327,14 @@ Retrieve a payment method by ID
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.inline_response400 import InlineResponse400
-from openapi_client.model.raa_s_partner_payment_method import RaaSPartnerPaymentMethod
+from openapi_client.models.raa_s_partner_payment_method import RaaSPartnerPaymentMethod
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -1453,7 +1347,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -1461,33 +1355,26 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | 
-    id = "" # str |  (optional) if omitted the server will use the default value of ""
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | 
+    id = '' # str |  (optional) (default to '')
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.get_payment_method_v2(user_token)
-        pprint(api_response)
-    except openapi_client.ApiException as e:
-        print("Exception when calling DefaultApi->get_payment_method_v2: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         api_response = api_instance.get_payment_method_v2(user_token, id=id)
+        print("The response of DefaultApi->get_payment_method_v2:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->get_payment_method_v2: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**|  |
- **id** | **str**|  | [optional] if omitted the server will use the default value of ""
+ **user_token** | **str**|  | 
+ **id** | **str**|  | [optional] [default to &#39;&#39;]
 
 ### Return type
 
@@ -1502,9 +1389,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | {@link PaymentMethod} |  -  |
@@ -1520,15 +1405,14 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.user import User
-from openapi_client.model.validate_error import ValidateError
-from openapi_client.model.inline_response400 import InlineResponse400
+from openapi_client.models.user import User
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -1541,7 +1425,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -1549,23 +1433,24 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    phone = "phone_example" # str | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    phone = 'phone_example' # str | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_profile(phone)
+        print("The response of DefaultApi->get_profile:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->get_profile: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **phone** | **str**|  |
+ **phone** | **str**|  | 
 
 ### Return type
 
@@ -1580,9 +1465,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Created |  -  |
@@ -1592,21 +1475,21 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_redis_status**
-> InlineResponse200 get_redis_status()
+> GetRedisStatus200Response get_redis_status()
 
 
 
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.error_response import ErrorResponse
-from openapi_client.model.inline_response200 import InlineResponse200
+from openapi_client.models.get_redis_status200_response import GetRedisStatus200Response
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -1619,7 +1502,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -1627,15 +1510,16 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
+    api_instance = openapi_client.DefaultApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         api_response = api_instance.get_redis_status()
+        print("The response of DefaultApi->get_redis_status:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->get_redis_status: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -1643,7 +1527,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**GetRedisStatus200Response**](GetRedisStatus200Response.md)
 
 ### Authorization
 
@@ -1654,9 +1538,7 @@ This endpoint does not need any parameter.
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -1674,15 +1556,15 @@ Generates Partner API Link Token.
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.session_link_response import SessionLinkResponse
-from openapi_client.model.inline_response400 import InlineResponse400
-from openapi_client.model.session_link_params import SessionLinkParams
+from openapi_client.models.session_link_params import SessionLinkParams
+from openapi_client.models.session_link_response import SessionLinkResponse
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -1695,7 +1577,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -1703,50 +1585,24 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    session_link_params = SessionLinkParams(
-        phone_number="phone_number_example",
-        last_name="last_name_example",
-        last_name2="last_name2_example",
-        gender="Male",
-        dob=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        email="email_example",
-        first_name="first_name_example",
-        middle_name="middle_name_example",
-        address1="address1_example",
-        address2="address2_example",
-        country_code=CountryAlpha2Code("AF"),
-        city="city_example",
-        zip_code="zip_code_example",
-        state="state_example",
-        birth_state="birth_state_example",
-        add_card_params=AddCardSessionParams(
-            name="name_example",
-            cardtype="DebitCard",
-            number="number_example",
-            name_on_card="name_on_card_example",
-            expiration_date="expiration_date_example",
-            security_code="security_code_example",
-            currency="currency_example",
-            country="country_example",
-            card_network="NotApplicable",
-        ),
-    ) # SessionLinkParams | {@link SessionLinkParams}
+    api_instance = openapi_client.DefaultApi(api_client)
+    session_link_params = openapi_client.SessionLinkParams() # SessionLinkParams | {@link SessionLinkParams}
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_session_link(session_link_params)
+        print("The response of DefaultApi->get_session_link:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->get_session_link: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **session_link_params** | [**SessionLinkParams**](SessionLinkParams.md)| {@link SessionLinkParams} |
+ **session_link_params** | [**SessionLinkParams**](SessionLinkParams.md)| {@link SessionLinkParams} | 
 
 ### Return type
 
@@ -1761,9 +1617,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -1774,7 +1628,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_sof_for_send_money_operation**
-> [SourceOfFunding] get_sof_for_send_money_operation(user_token)
+> List[SourceOfFunding] get_sof_for_send_money_operation(user_token, source_country=source_country, destination_country=destination_country)
 
 
 
@@ -1783,14 +1637,14 @@ gets sources of funding for send funds
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.source_of_funding import SourceOfFunding
-from openapi_client.model.inline_response400 import InlineResponse400
+from openapi_client.models.source_of_funding import SourceOfFunding
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -1803,7 +1657,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -1811,39 +1665,32 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | 
-    source_country = "sourceCountry_example" # str |  (optional)
-    destination_country = "destinationCountry_example" # str |  (optional)
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | 
+    source_country = 'source_country_example' # str |  (optional)
+    destination_country = 'destination_country_example' # str |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.get_sof_for_send_money_operation(user_token)
-        pprint(api_response)
-    except openapi_client.ApiException as e:
-        print("Exception when calling DefaultApi->get_sof_for_send_money_operation: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         api_response = api_instance.get_sof_for_send_money_operation(user_token, source_country=source_country, destination_country=destination_country)
+        print("The response of DefaultApi->get_sof_for_send_money_operation:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->get_sof_for_send_money_operation: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**|  |
- **source_country** | **str**|  | [optional]
- **destination_country** | **str**|  | [optional]
+ **user_token** | **str**|  | 
+ **source_country** | **str**|  | [optional] 
+ **destination_country** | **str**|  | [optional] 
 
 ### Return type
 
-[**[SourceOfFunding]**](SourceOfFunding.md)
+[**List[SourceOfFunding]**](SourceOfFunding.md)
 
 ### Authorization
 
@@ -1854,9 +1701,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -1874,15 +1719,15 @@ Partner API Token.
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.get_user_token_params import GetUserTokenParams
-from openapi_client.model.user_token_response import UserTokenResponse
-from openapi_client.model.inline_response400 import InlineResponse400
+from openapi_client.models.get_user_token_params import GetUserTokenParams
+from openapi_client.models.user_token_response import UserTokenResponse
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -1895,7 +1740,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -1903,25 +1748,24 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    get_user_token_params = GetUserTokenParams(
-        phone_number="phone_number_example",
-    ) # GetUserTokenParams | {@link GetUserTokenParams}
+    api_instance = openapi_client.DefaultApi(api_client)
+    get_user_token_params = openapi_client.GetUserTokenParams() # GetUserTokenParams | {@link GetUserTokenParams}
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_user_token(get_user_token_params)
+        print("The response of DefaultApi->get_user_token:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->get_user_token: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **get_user_token_params** | [**GetUserTokenParams**](GetUserTokenParams.md)| {@link GetUserTokenParams} |
+ **get_user_token_params** | [**GetUserTokenParams**](GetUserTokenParams.md)| {@link GetUserTokenParams} | 
 
 ### Return type
 
@@ -1936,9 +1780,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -1957,14 +1799,14 @@ Generates Partner API White Label Link Token.
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.session_link_response import SessionLinkResponse
-from openapi_client.model.inline_response400 import InlineResponse400
+from openapi_client.models.session_link_response import SessionLinkResponse
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -1977,7 +1819,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -1985,15 +1827,16 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
+    api_instance = openapi_client.DefaultApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         api_response = api_instance.get_while_label_link()
+        print("The response of DefaultApi->get_while_label_link:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->get_while_label_link: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -2012,9 +1855,7 @@ This endpoint does not need any parameter.
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -2034,15 +1875,15 @@ Verify is the phone number is available for registration.  It is used to check i
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.is_phone_available_request import IsPhoneAvailableRequest
-from openapi_client.model.inline_response404 import InlineResponse404
-from openapi_client.model.is_phone_available_response import IsPhoneAvailableResponse
+from openapi_client.models.is_phone_available_request import IsPhoneAvailableRequest
+from openapi_client.models.is_phone_available_response import IsPhoneAvailableResponse
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -2055,7 +1896,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -2063,25 +1904,24 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    is_phone_available_request = IsPhoneAvailableRequest(
-        phone="phone_example",
-    ) # IsPhoneAvailableRequest | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    is_phone_available_request = openapi_client.IsPhoneAvailableRequest() # IsPhoneAvailableRequest | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.is_phone_available(is_phone_available_request)
+        print("The response of DefaultApi->is_phone_available:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->is_phone_available: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **is_phone_available_request** | [**IsPhoneAvailableRequest**](IsPhoneAvailableRequest.md)|  |
+ **is_phone_available_request** | [**IsPhoneAvailableRequest**](IsPhoneAvailableRequest.md)|  | 
 
 ### Return type
 
@@ -2096,9 +1936,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -2107,7 +1945,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_contacts**
-> [ContactInfo] list_contacts(user_token)
+> List[ContactInfo] list_contacts(user_token)
 
 
 
@@ -2116,13 +1954,14 @@ Retrieve all contacts for a user
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.contact_info import ContactInfo
+from openapi_client.models.contact_info import ContactInfo
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -2135,7 +1974,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -2143,27 +1982,28 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | User token, used to retrieve the user's contacts. A.k.a. userId.
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | User token, used to retrieve the user's contacts. A.k.a. userId.
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.list_contacts(user_token)
+        print("The response of DefaultApi->list_contacts:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->list_contacts: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**| User token, used to retrieve the user&#39;s contacts. A.k.a. userId. |
+ **user_token** | **str**| User token, used to retrieve the user&#39;s contacts. A.k.a. userId. | 
 
 ### Return type
 
-[**[ContactInfo]**](ContactInfo.md)
+[**List[ContactInfo]**](ContactInfo.md)
 
 ### Authorization
 
@@ -2174,9 +2014,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Contact List |  -  |
@@ -2191,14 +2029,14 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.error_response import ErrorResponse
-from openapi_client.model.perform_level_one_params import PerformLevelOneParams
+from openapi_client.models.perform_level_one_params import PerformLevelOneParams
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -2211,7 +2049,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -2219,43 +2057,24 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    phone_number = "phoneNumber_example" # str | 
-    perform_level_one_params = PerformLevelOneParams(
-        address_description="address_description_example",
-        country_code="country_code_example",
-        call_location_longitude=3.14,
-        call_location_latitude=3.14,
-        city="city_example",
-        birth_state="birth_state_example",
-        state="state_example",
-        zip_code="zip_code_example",
-        gender="Male",
-        place_detail="place_detail_example",
-        address2="address2_example",
-        address1="address1_example",
-        date_of_birth=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        email="email_example",
-        second_last_name="second_last_name_example",
-        middle_name="middle_name_example",
-        last_name="last_name_example",
-        first_name="first_name_example",
-    ) # PerformLevelOneParams | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    phone_number = 'phone_number_example' # str | 
+    perform_level_one_params = openapi_client.PerformLevelOneParams() # PerformLevelOneParams | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_instance.perform_level_one(phone_number, perform_level_one_params)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->perform_level_one: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **phone_number** | **str**|  |
- **perform_level_one_params** | [**PerformLevelOneParams**](PerformLevelOneParams.md)|  |
+ **phone_number** | **str**|  | 
+ **perform_level_one_params** | [**PerformLevelOneParams**](PerformLevelOneParams.md)|  | 
 
 ### Return type
 
@@ -2270,9 +2089,7 @@ void (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -2289,14 +2106,14 @@ void (empty response body)
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.perform_resubmit_upgrade_level_params import PerformResubmitUpgradeLevelParams
-from openapi_client.model.error_response import ErrorResponse
+from openapi_client.models.perform_resubmit_upgrade_level_params import PerformResubmitUpgradeLevelParams
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -2309,7 +2126,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -2317,60 +2134,22 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    perform_resubmit_upgrade_level_params = PerformResubmitUpgradeLevelParams(
-        level=3.14,
-        level_status_detail="level_status_detail_example",
-        call_location_longitude=3.14,
-        call_location_latitude=3.14,
-        address1="address1_example",
-        address2="address2_example",
-        address3="address3_example",
-        address4="address4_example",
-        state="state_example",
-        city="city_example",
-        zip_code="zip_code_example",
-        place_detail="place_detail_example",
-        email="email_example",
-        country_code="country_code_example",
-        date_of_birth="date_of_birth_example",
-        nationality="nationality_example",
-        birth_state="birth_state_example",
-        gender="gender_example",
-        documents=[
-            UserDocument(
-                id="id_example",
-                type={},
-                sub_type=3.14,
-                number="number_example",
-                expiration_date="expiration_date_example",
-                issued_country="issued_country_example",
-                issued_date="issued_date_example",
-                user_identity_data={
-                    "key": None,
-                },
-                date_time=dateutil_parser('1970-01-01T00:00:00.00Z'),
-            ),
-        ],
-        first_name="first_name_example",
-        last_name="last_name_example",
-        last_name2="last_name2_example",
-        is_id_address_different=True,
-    ) # PerformResubmitUpgradeLevelParams | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    perform_resubmit_upgrade_level_params = openapi_client.PerformResubmitUpgradeLevelParams() # PerformResubmitUpgradeLevelParams | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_instance.perform_resubmit_upgrade_level(perform_resubmit_upgrade_level_params)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->perform_resubmit_upgrade_level: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **perform_resubmit_upgrade_level_params** | [**PerformResubmitUpgradeLevelParams**](PerformResubmitUpgradeLevelParams.md)|  |
+ **perform_resubmit_upgrade_level_params** | [**PerformResubmitUpgradeLevelParams**](PerformResubmitUpgradeLevelParams.md)|  | 
 
 ### Return type
 
@@ -2385,9 +2164,7 @@ void (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -2404,15 +2181,15 @@ void (empty response body)
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.error_response import ErrorResponse
-from openapi_client.model.raas_pre_quote_response import RaasPreQuoteResponse
-from openapi_client.model.raas_pre_quote_request import RaasPreQuoteRequest
+from openapi_client.models.raas_pre_quote_request import RaasPreQuoteRequest
+from openapi_client.models.raas_pre_quote_response import RaasPreQuoteResponse
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -2425,7 +2202,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -2433,35 +2210,26 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | 
-    raas_pre_quote_request = RaasPreQuoteRequest(
-        recipient_id="recipient_id_example",
-        subscriber_id="subscriber_id_example",
-        destination_payment_method=None,
-        sender_country_code="sender_country_code_example",
-        is_sender_amount=True,
-        amount=3.14,
-        operation_type="SendFunds",
-        product_type="Fund",
-        tennant_fee=3.14,
-    ) # RaasPreQuoteRequest | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | 
+    raas_pre_quote_request = openapi_client.RaasPreQuoteRequest() # RaasPreQuoteRequest | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.pre_quote(user_token, raas_pre_quote_request)
+        print("The response of DefaultApi->pre_quote:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->pre_quote: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**|  |
- **raas_pre_quote_request** | [**RaasPreQuoteRequest**](RaasPreQuoteRequest.md)|  |
+ **user_token** | **str**|  | 
+ **raas_pre_quote_request** | [**RaasPreQuoteRequest**](RaasPreQuoteRequest.md)|  | 
 
 ### Return type
 
@@ -2476,9 +2244,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -2496,14 +2262,14 @@ Receive funds
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.receive_money_params import ReceiveMoneyParams
-from openapi_client.model.inline_response400 import InlineResponse400
+from openapi_client.models.receive_money_params import ReceiveMoneyParams
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -2516,7 +2282,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -2524,27 +2290,24 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | 
-    receive_money_params = ReceiveMoneyParams(
-        destination_payment_method=None,
-        correlation_id="correlation_id_example",
-    ) # ReceiveMoneyParams | {@link ReceiveMoneyParams}
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | 
+    receive_money_params = openapi_client.ReceiveMoneyParams() # ReceiveMoneyParams | {@link ReceiveMoneyParams}
 
-    # example passing only required values which don't have defaults set
     try:
         api_instance.receive(user_token, receive_money_params)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->receive: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**|  |
- **receive_money_params** | [**ReceiveMoneyParams**](ReceiveMoneyParams.md)| {@link ReceiveMoneyParams} |
+ **user_token** | **str**|  | 
+ **receive_money_params** | [**ReceiveMoneyParams**](ReceiveMoneyParams.md)| {@link ReceiveMoneyParams} | 
 
 ### Return type
 
@@ -2559,9 +2322,7 @@ void (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -2581,15 +2342,15 @@ Registers Partner user. If user exists, return its id.
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.register_user_params import RegisterUserParams
-from openapi_client.model.user_token_response import UserTokenResponse
-from openapi_client.model.inline_response400 import InlineResponse400
+from openapi_client.models.register_user_params import RegisterUserParams
+from openapi_client.models.user_token_response import UserTokenResponse
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -2602,7 +2363,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -2610,39 +2371,24 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    register_user_params = RegisterUserParams(
-        phone_number="phone_number_example",
-        last_name="last_name_example",
-        last_name2="last_name2_example",
-        gender="Male",
-        dob=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        email="email_example",
-        first_name="first_name_example",
-        middle_name="middle_name_example",
-        address1="address1_example",
-        address2="address2_example",
-        country_code=CountryAlpha2Code("AF"),
-        city="city_example",
-        zip_code="zip_code_example",
-        state="state_example",
-        birth_state="birth_state_example",
-    ) # RegisterUserParams | {@link RegisterUserParams}
+    api_instance = openapi_client.DefaultApi(api_client)
+    register_user_params = openapi_client.RegisterUserParams() # RegisterUserParams | {@link RegisterUserParams}
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.register_user(register_user_params)
+        print("The response of DefaultApi->register_user:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->register_user: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **register_user_params** | [**RegisterUserParams**](RegisterUserParams.md)| {@link RegisterUserParams} |
+ **register_user_params** | [**RegisterUserParams**](RegisterUserParams.md)| {@link RegisterUserParams} | 
 
 ### Return type
 
@@ -2657,9 +2403,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -2678,15 +2422,15 @@ Registers Partner user. If user exists, return its id.
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.register_user_params import RegisterUserParams
-from openapi_client.model.user_token_response import UserTokenResponse
-from openapi_client.model.inline_response400 import InlineResponse400
+from openapi_client.models.register_user_params import RegisterUserParams
+from openapi_client.models.user_token_response import UserTokenResponse
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -2699,7 +2443,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -2707,39 +2451,24 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    register_user_params = RegisterUserParams(
-        phone_number="phone_number_example",
-        last_name="last_name_example",
-        last_name2="last_name2_example",
-        gender="Male",
-        dob=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        email="email_example",
-        first_name="first_name_example",
-        middle_name="middle_name_example",
-        address1="address1_example",
-        address2="address2_example",
-        country_code=CountryAlpha2Code("AF"),
-        city="city_example",
-        zip_code="zip_code_example",
-        state="state_example",
-        birth_state="birth_state_example",
-    ) # RegisterUserParams | {@link RegisterUserParams}
+    api_instance = openapi_client.DefaultApi(api_client)
+    register_user_params = openapi_client.RegisterUserParams() # RegisterUserParams | {@link RegisterUserParams}
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.register_user_v2(register_user_params)
+        print("The response of DefaultApi->register_user_v2:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->register_user_v2: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **register_user_params** | [**RegisterUserParams**](RegisterUserParams.md)| {@link RegisterUserParams} |
+ **register_user_params** | [**RegisterUserParams**](RegisterUserParams.md)| {@link RegisterUserParams} | 
 
 ### Return type
 
@@ -2754,9 +2483,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -2775,14 +2502,14 @@ Request OTP for phone number. The phone number must be registered. Using /regist
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.request_otp_params import RequestOTPParams
-from openapi_client.model.inline_response404 import InlineResponse404
+from openapi_client.models.request_otp_params import RequestOTPParams
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -2795,7 +2522,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -2803,25 +2530,22 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    request_otp_params = RequestOTPParams(
-        lang=Language("en"),
-        phone="phone_example",
-    ) # RequestOTPParams | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    request_otp_params = openapi_client.RequestOTPParams() # RequestOTPParams | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_instance.request_otp(request_otp_params)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->request_otp: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request_otp_params** | [**RequestOTPParams**](RequestOTPParams.md)|  |
+ **request_otp_params** | [**RequestOTPParams**](RequestOTPParams.md)|  | 
 
 ### Return type
 
@@ -2836,9 +2560,7 @@ void (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Code Sent |  -  |
@@ -2857,15 +2579,15 @@ Request money to a contact
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.inline_response403 import InlineResponse403
-from openapi_client.model.request_money_partner_params import RequestMoneyPartnerParams
-from openapi_client.model.pick_operation_detail_response_exclude_keyof_operation_detail_response_id_or_type_or_show_warning_screen import PickOperationDetailResponseExcludeKeyofOperationDetailResponseIdOrTypeOrShowWarningScreen
+from openapi_client.models.pick_operation_detail_response_exclude_keyof_operation_detail_response_id_or_type_or_show_warning_screen import PickOperationDetailResponseExcludeKeyofOperationDetailResponseIdOrTypeOrShowWarningScreen
+from openapi_client.models.request_money_partner_params import RequestMoneyPartnerParams
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -2878,7 +2600,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -2886,32 +2608,26 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | 
-    request_money_partner_params = RequestMoneyPartnerParams(
-        request_to="request_to_example",
-        correlation_id="correlation_id_example",
-        destination_payment_method_id="destination_payment_method_id_example",
-        recipient_amount=3.14,
-        recipient_currency="recipient_currency_example",
-        reason="reason_example",
-    ) # RequestMoneyPartnerParams | {@link RequestMoneyParams}
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | 
+    request_money_partner_params = openapi_client.RequestMoneyPartnerParams() # RequestMoneyPartnerParams | {@link RequestMoneyParams}
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.request_v2(user_token, request_money_partner_params)
+        print("The response of DefaultApi->request_v2:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->request_v2: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**|  |
- **request_money_partner_params** | [**RequestMoneyPartnerParams**](RequestMoneyPartnerParams.md)| {@link RequestMoneyParams} |
+ **user_token** | **str**|  | 
+ **request_money_partner_params** | [**RequestMoneyPartnerParams**](RequestMoneyPartnerParams.md)| {@link RequestMoneyParams} | 
 
 ### Return type
 
@@ -2926,9 +2642,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | {@link RequestMoneyResponse} |  -  |
@@ -2947,15 +2661,15 @@ Send funds to a requester
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.send_money_response import SendMoneyResponse
-from openapi_client.model.inline_response400 import InlineResponse400
-from openapi_client.model.send_money_params import SendMoneyParams
+from openapi_client.models.send_money_params import SendMoneyParams
+from openapi_client.models.send_money_response import SendMoneyResponse
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -2968,7 +2682,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -2976,25 +2690,26 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | 
-    send_money_params = SendMoneyParams(None) # SendMoneyParams | {@link SendMoneyParams}
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | 
+    send_money_params = openapi_client.SendMoneyParams() # SendMoneyParams | {@link SendMoneyParams}
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.send(user_token, send_money_params)
+        print("The response of DefaultApi->send:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->send: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**|  |
- **send_money_params** | [**SendMoneyParams**](SendMoneyParams.md)| {@link SendMoneyParams} |
+ **user_token** | **str**|  | 
+ **send_money_params** | [**SendMoneyParams**](SendMoneyParams.md)| {@link SendMoneyParams} | 
 
 ### Return type
 
@@ -3009,9 +2724,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -3028,14 +2741,14 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.error_response import ErrorResponse
-from openapi_client.model.alternate_flow import AlternateFlow
+from openapi_client.models.alternate_flow import AlternateFlow
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -3048,7 +2761,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -3056,22 +2769,22 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    type = AlternateFlow("ssn") # AlternateFlow | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    type = openapi_client.AlternateFlow() # AlternateFlow | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_instance.set_alternate_cip(type)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->set_alternate_cip: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **type** | **AlternateFlow**|  |
+ **type** | [**AlternateFlow**](.md)|  | 
 
 ### Return type
 
@@ -3086,9 +2799,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -3105,14 +2816,14 @@ void (empty response body)
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.error_response import ErrorResponse
-from openapi_client.model.level_two_params import LevelTwoParams
+from openapi_client.models.level_two_params import LevelTwoParams
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -3125,7 +2836,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -3133,28 +2844,24 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    phone_number = "phoneNumber_example" # str | 
-    level_two_params = LevelTwoParams(
-        ssn="ssn_example",
-        call_location_longitude=3.14,
-        call_location_latitude=3.14,
-    ) # LevelTwoParams | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    phone_number = 'phone_number_example' # str | 
+    level_two_params = openapi_client.LevelTwoParams() # LevelTwoParams | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_instance.set_level_two(phone_number, level_two_params)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->set_level_two: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **phone_number** | **str**|  |
- **level_two_params** | [**LevelTwoParams**](LevelTwoParams.md)|  |
+ **phone_number** | **str**|  | 
+ **level_two_params** | [**LevelTwoParams**](LevelTwoParams.md)|  | 
 
 ### Return type
 
@@ -3169,9 +2876,7 @@ void (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -3188,15 +2893,15 @@ void (empty response body)
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.inline_response403 import InlineResponse403
-from openapi_client.model.set_reference_code_params_base import SetReferenceCodeParamsBase
-from openapi_client.model.get_reference_code_response import GetReferenceCodeResponse
+from openapi_client.models.get_reference_code_response import GetReferenceCodeResponse
+from openapi_client.models.set_reference_code_params_base import SetReferenceCodeParamsBase
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -3209,7 +2914,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -3217,35 +2922,26 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | 
-    set_reference_code_params_base = SetReferenceCodeParamsBase(
-        operation_id="operation_id_example",
-        operation_code="operation_code_example",
-        amount=3.14,
-        currency="currency_example",
-        sender_name="sender_name_example",
-        receiver_name="receiver_name_example",
-        network_id="network_id_example",
-        operation_type="operation_type_example",
-        cash_provider="cash_provider_example",
-    ) # SetReferenceCodeParamsBase | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | 
+    set_reference_code_params_base = openapi_client.SetReferenceCodeParamsBase() # SetReferenceCodeParamsBase | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.set_reference_code(user_token, set_reference_code_params_base)
+        print("The response of DefaultApi->set_reference_code:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->set_reference_code: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**|  |
- **set_reference_code_params_base** | [**SetReferenceCodeParamsBase**](SetReferenceCodeParamsBase.md)|  |
+ **user_token** | **str**|  | 
+ **set_reference_code_params_base** | [**SetReferenceCodeParamsBase**](SetReferenceCodeParamsBase.md)|  | 
 
 ### Return type
 
@@ -3260,9 +2956,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -3278,13 +2972,13 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.error_response import ErrorResponse
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -3297,7 +2991,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -3305,22 +2999,22 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    phone_number = "phoneNumber_example" # str | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    phone_number = 'phone_number_example' # str | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_instance.set_trusted_level_two(phone_number)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->set_trusted_level_two: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **phone_number** | **str**|  |
+ **phone_number** | **str**|  | 
 
 ### Return type
 
@@ -3335,9 +3029,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -3356,13 +3048,13 @@ Gets operation status
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.inline_response400 import InlineResponse400
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -3375,7 +3067,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -3383,25 +3075,26 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | 
-    operation_id = "operationId_example" # str | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | 
+    operation_id = 'operation_id_example' # str | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.status(user_token, operation_id)
+        print("The response of DefaultApi->status:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->status: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**|  |
- **operation_id** | **str**|  |
+ **user_token** | **str**|  | 
+ **operation_id** | **str**|  | 
 
 ### Return type
 
@@ -3416,9 +3109,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -3436,15 +3127,14 @@ Updates user profile
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.user_update_params import UserUpdateParams
-from openapi_client.model.validate_error import ValidateError
-from openapi_client.model.inline_response400 import InlineResponse400
+from openapi_client.models.user_update_params import UserUpdateParams
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -3457,7 +3147,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -3465,39 +3155,24 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    phone = "phone_example" # str | 
-    user_update_params = UserUpdateParams(
-        email="email_example",
-        first_name="first_name_example",
-        last_name="last_name_example",
-        middle_name="middle_name_example",
-        second_last_name="second_last_name_example",
-        address1="address1_example",
-        address2="address2_example",
-        place_id="place_id_example",
-        country="country_example",
-        gender="gender_example",
-        dob=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        country_id="country_id_example",
-        status="new",
-        first_time=True,
-    ) # UserUpdateParams | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    phone = 'phone_example' # str | 
+    user_update_params = openapi_client.UserUpdateParams() # UserUpdateParams | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_instance.update_profile(phone, user_update_params)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->update_profile: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **phone** | **str**|  |
- **user_update_params** | [**UserUpdateParams**](UserUpdateParams.md)|  |
+ **phone** | **str**|  | 
+ **user_update_params** | [**UserUpdateParams**](UserUpdateParams.md)|  | 
 
 ### Return type
 
@@ -3512,9 +3187,7 @@ void (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Updated |  -  |
@@ -3533,15 +3206,14 @@ Update a contact for a user
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.inline_response403 import InlineResponse403
-from openapi_client.model.validate_error import ValidateError
-from openapi_client.model.update_contact_request_params import UpdateContactRequestParams
+from openapi_client.models.update_contact_request_params import UpdateContactRequestParams
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -3554,7 +3226,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -3562,31 +3234,24 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    user_token = "userToken_example" # str | User token, used to retrieve the user's contacts. A.k.a. userId.
-    update_contact_request_params = UpdateContactRequestParams(
-        alias="alias_example",
-        country_code="country_code_example",
-        last_name="last_name_example",
-        first_name="first_name_example",
-        email="email_example",
-        phone="phone_example",
-    ) # UpdateContactRequestParams | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    user_token = 'user_token_example' # str | User token, used to retrieve the user's contacts. A.k.a. userId.
+    update_contact_request_params = openapi_client.UpdateContactRequestParams() # UpdateContactRequestParams | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_instance.updated_contact(user_token, update_contact_request_params)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->updated_contact: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_token** | **str**| User token, used to retrieve the user&#39;s contacts. A.k.a. userId. |
- **update_contact_request_params** | [**UpdateContactRequestParams**](UpdateContactRequestParams.md)|  |
+ **user_token** | **str**| User token, used to retrieve the user&#39;s contacts. A.k.a. userId. | 
+ **update_contact_request_params** | [**UpdateContactRequestParams**](UpdateContactRequestParams.md)|  | 
 
 ### Return type
 
@@ -3601,9 +3266,7 @@ void (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Updated |  -  |
@@ -3620,16 +3283,14 @@ void (empty response body)
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.inline_response403 import InlineResponse403
-from openapi_client.model.inline_response404 import InlineResponse404
-from openapi_client.model.inline_response500 import InlineResponse500
-from openapi_client.model.pick_validate_otp_params_exclude_keyof_validate_otp_params_device_id import PickValidateOTPParamsExcludeKeyofValidateOTPParamsDeviceId
+from openapi_client.models.pick_validate_otp_params_exclude_keyof_validate_otp_params_device_id import PickValidateOTPParamsExcludeKeyofValidateOTPParamsDeviceId
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -3642,7 +3303,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -3650,25 +3311,22 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    body = PickValidateOTPParamsExcludeKeyofValidateOTPParamsDeviceId(
-        phone="phone_example",
-        otp_code="otp_code_example",
-    ) # PickValidateOTPParamsExcludeKeyofValidateOTPParamsDeviceId | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    body = openapi_client.PickValidateOTPParamsExcludeKeyofValidateOTPParamsDeviceId() # PickValidateOTPParamsExcludeKeyofValidateOTPParamsDeviceId | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_instance.validate_otp(body)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->validate_otp: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**PickValidateOTPParamsExcludeKeyofValidateOTPParamsDeviceId**](PickValidateOTPParamsExcludeKeyofValidateOTPParamsDeviceId.md)|  |
+ **body** | **PickValidateOTPParamsExcludeKeyofValidateOTPParamsDeviceId**|  | 
 
 ### Return type
 
@@ -3683,9 +3341,7 @@ void (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -3698,20 +3354,20 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **validate_phone_number**
-> str validate_phone_number(inline_object)
+> str validate_phone_number(validate_phone_number_request)
 
 
 
 ### Example
 
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.inline_response403 import InlineResponse403
-from openapi_client.model.inline_object import InlineObject
+from openapi_client.models.validate_phone_number_request import ValidatePhoneNumberRequest
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -3720,27 +3376,26 @@ configuration = openapi_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
+with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    inline_object = InlineObject(
-        phone="phone_example",
-    ) # InlineObject | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    validate_phone_number_request = openapi_client.ValidatePhoneNumberRequest() # ValidatePhoneNumberRequest | 
 
-    # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.validate_phone_number(inline_object)
+        api_response = api_instance.validate_phone_number(validate_phone_number_request)
+        print("The response of DefaultApi->validate_phone_number:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->validate_phone_number: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object** | [**InlineObject**](InlineObject.md)|  |
+ **validate_phone_number_request** | [**ValidatePhoneNumberRequest**](ValidatePhoneNumberRequest.md)|  | 
 
 ### Return type
 
@@ -3755,9 +3410,7 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -3774,16 +3427,14 @@ No authorization required
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import default_api
-from openapi_client.model.inline_response403 import InlineResponse403
-from openapi_client.model.pick_validate_pin_code_params_exclude_keyof_validate_pin_code_params_device_id import PickValidatePINCodeParamsExcludeKeyofValidatePINCodeParamsDeviceId
-from openapi_client.model.inline_response500 import InlineResponse500
-from openapi_client.model.validate_error import ValidateError
+from openapi_client.models.pick_validate_pin_code_params_exclude_keyof_validate_pin_code_params_device_id import PickValidatePINCodeParamsExcludeKeyofValidatePINCodeParamsDeviceId
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -3796,7 +3447,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -3804,25 +3455,22 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    body = PickValidatePINCodeParamsExcludeKeyofValidatePINCodeParamsDeviceId(
-        phone="phone_example",
-        pincode="pincode_example",
-    ) # PickValidatePINCodeParamsExcludeKeyofValidatePINCodeParamsDeviceId | 
+    api_instance = openapi_client.DefaultApi(api_client)
+    body = openapi_client.PickValidatePINCodeParamsExcludeKeyofValidatePINCodeParamsDeviceId() # PickValidatePINCodeParamsExcludeKeyofValidatePINCodeParamsDeviceId | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_instance.validate_pin_code(body)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling DefaultApi->validate_pin_code: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**PickValidatePINCodeParamsExcludeKeyofValidatePINCodeParamsDeviceId**](PickValidatePINCodeParamsExcludeKeyofValidatePINCodeParamsDeviceId.md)|  |
+ **body** | **PickValidatePINCodeParamsExcludeKeyofValidatePINCodeParamsDeviceId**|  | 
 
 ### Return type
 
@@ -3837,9 +3485,7 @@ void (empty response body)
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |

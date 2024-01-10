@@ -5,8 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | 
-**tenant_id** | **str** |  | 
-**tenant_code** | **str** |  | 
 **email** | **str** |  | [optional] 
 **first_name** | **str** |  | [optional] 
 **last_name** | **str** |  | [optional] 
@@ -35,6 +33,8 @@ Name | Type | Description | Notes
 **has_pincode** | **bool** |  | [optional] 
 **password** | **str** | Used to store Numi Plat pincode. It&#39;s not used to validate  user in Raas | [optional] 
 **phone_info** | [**IPhoneInfo**](IPhoneInfo.md) |  | [optional] 
+**tenant_id** | **str** |  | 
+**tenant_code** | **str** |  | 
 **latitude** | **float** |  | [optional] 
 **longitude** | **float** |  | [optional] 
 **profile_picture_url** | **str** |  | [optional] 
@@ -43,6 +43,23 @@ Name | Type | Description | Notes
 **instagram_public_user_name** | **str** |  | [optional] 
 **account_code** | **str** |  | [optional] 
 
+## Example
+
+```python
+from openapi_client.models.user import User
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of User from a JSON string
+user_instance = User.from_json(json)
+# print the JSON string representation of the object
+print User.to_json()
+
+# convert the object into a dict
+user_dict = user_instance.to_dict()
+# create an instance of User from a dict
+user_form_dict = user.from_dict(user_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

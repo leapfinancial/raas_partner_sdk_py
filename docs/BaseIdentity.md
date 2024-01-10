@@ -31,12 +31,29 @@ Name | Type | Description | Notes
 **first_name** | **str** |  | [optional] 
 **last_name** | **str** |  | [optional] 
 **second_lastname** | **str** |  | [optional] 
-**second_name** | **bool, date, datetime, dict, float, int, list, str, none_type** |  | [optional] 
+**second_name** | **object** |  | [optional] 
 **marital_status** | **str** |  | [optional] 
 **maiden_name** | **str** |  | [optional] 
 **third_name** | **str** |  | [optional] 
 **subtype** | **str** |  | [optional] 
 
+## Example
+
+```python
+from openapi_client.models.base_identity import BaseIdentity
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of BaseIdentity from a JSON string
+base_identity_instance = BaseIdentity.from_json(json)
+# print the JSON string representation of the object
+print BaseIdentity.to_json()
+
+# convert the object into a dict
+base_identity_dict = base_identity_instance.to_dict()
+# create an instance of BaseIdentity from a dict
+base_identity_form_dict = base_identity.from_dict(base_identity_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

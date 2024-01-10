@@ -16,14 +16,14 @@ Method | HTTP request | Description
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import file_api
-from openapi_client.model.error_response import ErrorResponse
-from openapi_client.model.scan_identity_response import ScanIdentityResponse
+from openapi_client.models.scan_identity_response import ScanIdentityResponse
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -36,7 +36,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -44,23 +44,24 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = file_api.FileApi(api_client)
-    phone_number = "phoneNumber_example" # str | 
+    api_instance = openapi_client.FileApi(api_client)
+    phone_number = 'phone_number_example' # str | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.upload_documents(phone_number)
+        print("The response of FileApi->upload_documents:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FileApi->upload_documents: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **phone_number** | **str**|  |
+ **phone_number** | **str**|  | 
 
 ### Return type
 
@@ -75,9 +76,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -94,13 +93,13 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (api_key):
-
 ```python
 import time
+import os
 import openapi_client
-from openapi_client.api import file_api
-from openapi_client.model.error_response import ErrorResponse
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -113,7 +112,7 @@ configuration = openapi_client.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration.api_key['api_key'] = 'YOUR_API_KEY'
+configuration.api_key['api_key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -121,22 +120,22 @@ configuration.api_key['api_key'] = 'YOUR_API_KEY'
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = file_api.FileApi(api_client)
-    phone_number = "phoneNumber_example" # str | 
+    api_instance = openapi_client.FileApi(api_client)
+    phone_number = 'phone_number_example' # str | 
 
-    # example passing only required values which don't have defaults set
     try:
         api_instance.upload_proof_of_life(phone_number)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling FileApi->upload_proof_of_life: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **phone_number** | **str**|  |
+ **phone_number** | **str**|  | 
 
 ### Return type
 
@@ -151,9 +150,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |

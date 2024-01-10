@@ -13,6 +13,23 @@ Name | Type | Description | Notes
 **data** | [**BaseIdentity**](BaseIdentity.md) |  | [optional] 
 **attachment_responses** | [**AttachmentResponses**](AttachmentResponses.md) |  | [optional] 
 
+## Example
+
+```python
+from openapi_client.models.scan_identity_response import ScanIdentityResponse
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of ScanIdentityResponse from a JSON string
+scan_identity_response_instance = ScanIdentityResponse.from_json(json)
+# print the JSON string representation of the object
+print ScanIdentityResponse.to_json()
+
+# convert the object into a dict
+scan_identity_response_dict = scan_identity_response_instance.to_dict()
+# create an instance of ScanIdentityResponse from a dict
+scan_identity_response_form_dict = scan_identity_response.from_dict(scan_identity_response_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

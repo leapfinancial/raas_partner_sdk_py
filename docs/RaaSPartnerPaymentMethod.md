@@ -14,8 +14,24 @@ Name | Type | Description | Notes
 **is_primary** | **bool** |  | [optional] 
 **name** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from openapi_client.models.raa_s_partner_payment_method import RaaSPartnerPaymentMethod
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of RaaSPartnerPaymentMethod from a JSON string
+raa_s_partner_payment_method_instance = RaaSPartnerPaymentMethod.from_json(json)
+# print the JSON string representation of the object
+print RaaSPartnerPaymentMethod.to_json()
+
+# convert the object into a dict
+raa_s_partner_payment_method_dict = raa_s_partner_payment_method_instance.to_dict()
+# create an instance of RaaSPartnerPaymentMethod from a dict
+raa_s_partner_payment_method_form_dict = raa_s_partner_payment_method.from_dict(raa_s_partner_payment_method_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 
