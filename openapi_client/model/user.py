@@ -123,6 +123,7 @@ class User(ModelNormal):
             'custom_country_code': (str,),  # noqa: E501
             'facebook_public_user_name': (str,),  # noqa: E501
             'instagram_public_user_name': (str,),  # noqa: E501
+            'account_code': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -168,6 +169,7 @@ class User(ModelNormal):
         'custom_country_code': 'customCountryCode',  # noqa: E501
         'facebook_public_user_name': 'facebookPublicUserName',  # noqa: E501
         'instagram_public_user_name': 'instagramPublicUserName',  # noqa: E501
+        'account_code': 'accountCode',  # noqa: E501
     }
 
     read_only_vars = {
@@ -250,6 +252,7 @@ class User(ModelNormal):
             custom_country_code (str): [optional]  # noqa: E501
             facebook_public_user_name (str): [optional]  # noqa: E501
             instagram_public_user_name (str): [optional]  # noqa: E501
+            account_code (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -377,6 +380,7 @@ class User(ModelNormal):
             custom_country_code (str): [optional]  # noqa: E501
             facebook_public_user_name (str): [optional]  # noqa: E501
             instagram_public_user_name (str): [optional]  # noqa: E501
+            account_code (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

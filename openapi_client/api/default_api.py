@@ -32,10 +32,14 @@ from openapi_client.model.corridor_dto import CorridorDTO
 from openapi_client.model.create_contact_request_params_partner import CreateContactRequestParamsPartner
 from openapi_client.model.error_response import ErrorResponse
 from openapi_client.model.exchange_rate_dto import ExchangeRateDTO
-from openapi_client.model.get_redis_status200_response import GetRedisStatus200Response
 from openapi_client.model.get_reference_code_response import GetReferenceCodeResponse
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
 from openapi_client.model.get_user_token_params import GetUserTokenParams
+from openapi_client.model.inline_object import InlineObject
+from openapi_client.model.inline_response200 import InlineResponse200
+from openapi_client.model.inline_response400 import InlineResponse400
+from openapi_client.model.inline_response403 import InlineResponse403
+from openapi_client.model.inline_response404 import InlineResponse404
+from openapi_client.model.inline_response500 import InlineResponse500
 from openapi_client.model.is_phone_available_request import IsPhoneAvailableRequest
 from openapi_client.model.is_phone_available_response import IsPhoneAvailableResponse
 from openapi_client.model.level_two_params import LevelTwoParams
@@ -57,7 +61,6 @@ from openapi_client.model.receive_money_params import ReceiveMoneyParams
 from openapi_client.model.register_user_params import RegisterUserParams
 from openapi_client.model.request_money_partner_params import RequestMoneyPartnerParams
 from openapi_client.model.request_otp_params import RequestOTPParams
-from openapi_client.model.request_otp404_response import RequestOtp404Response
 from openapi_client.model.send_money_params import SendMoneyParams
 from openapi_client.model.send_money_response import SendMoneyResponse
 from openapi_client.model.session_link_params import SessionLinkParams
@@ -70,9 +73,6 @@ from openapi_client.model.user import User
 from openapi_client.model.user_token_response import UserTokenResponse
 from openapi_client.model.user_update_params import UserUpdateParams
 from openapi_client.model.validate_error import ValidateError
-from openapi_client.model.validate_otp403_response import ValidateOTP403Response
-from openapi_client.model.validate_otp500_response import ValidateOTP500Response
-from openapi_client.model.validate_phone_number_request import ValidatePhoneNumberRequest
 
 
 class DefaultApi(object):
@@ -1097,7 +1097,7 @@ class DefaultApi(object):
         )
         self.get_redis_status_endpoint = _Endpoint(
             settings={
-                'response_type': (GetRedisStatus200Response,),
+                'response_type': (InlineResponse200,),
                 'auth': [
                     'api_key'
                 ],
@@ -2403,10 +2403,10 @@ class DefaultApi(object):
             },
             params_map={
                 'all': [
-                    'validate_phone_number_request',
+                    'inline_object',
                 ],
                 'required': [
-                    'validate_phone_number_request',
+                    'inline_object',
                 ],
                 'nullable': [
                 ],
@@ -2421,13 +2421,13 @@ class DefaultApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'validate_phone_number_request':
-                        (ValidatePhoneNumberRequest,),
+                    'inline_object':
+                        (InlineObject,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'validate_phone_number_request': 'body',
+                    'inline_object': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -4059,7 +4059,7 @@ class DefaultApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            GetRedisStatus200Response
+            InlineResponse200
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -6030,7 +6030,7 @@ class DefaultApi(object):
 
     def validate_phone_number(
         self,
-        validate_phone_number_request,
+        inline_object,
         **kwargs
     ):
         """validate_phone_number  # noqa: E501
@@ -6038,11 +6038,11 @@ class DefaultApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.validate_phone_number(validate_phone_number_request, async_req=True)
+        >>> thread = api.validate_phone_number(inline_object, async_req=True)
         >>> result = thread.get()
 
         Args:
-            validate_phone_number_request (ValidatePhoneNumberRequest):
+            inline_object (InlineObject):
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -6106,8 +6106,8 @@ class DefaultApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['validate_phone_number_request'] = \
-            validate_phone_number_request
+        kwargs['inline_object'] = \
+            inline_object
         return self.validate_phone_number_endpoint.call_with_http_info(**kwargs)
 
     def validate_pin_code(

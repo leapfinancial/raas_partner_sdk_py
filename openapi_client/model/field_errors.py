@@ -30,8 +30,8 @@ from openapi_client.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.field_errors_value import FieldErrorsValue
-    globals()['FieldErrorsValue'] = FieldErrorsValue
+    from openapi_client.model.field_errors_addl_props import FieldErrorsAddlProps
+    globals()['FieldErrorsAddlProps'] = FieldErrorsAddlProps
 
 
 class FieldErrors(ModelNormal):
@@ -71,7 +71,7 @@ class FieldErrors(ModelNormal):
         of type self, this must run after the class is loaded
         """
         lazy_import()
-        return (FieldErrorsValue,)  # noqa: E501
+        return (FieldErrorsAddlProps,)  # noqa: E501
 
     _nullable = False
 

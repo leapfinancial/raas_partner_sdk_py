@@ -30,10 +30,10 @@ from openapi_client.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from openapi_client.model.inline_object import InlineObject
     from openapi_client.model.set_pincode_params import SetPincodeParams
-    from openapi_client.model.validate_phone_number_request import ValidatePhoneNumberRequest
+    globals()['InlineObject'] = InlineObject
     globals()['SetPincodeParams'] = SetPincodeParams
-    globals()['ValidatePhoneNumberRequest'] = ValidatePhoneNumberRequest
 
 
 class SetPincodeParamsPartner(ModelComposed):
@@ -318,8 +318,8 @@ class SetPincodeParamsPartner(ModelComposed):
           'anyOf': [
           ],
           'allOf': [
+              InlineObject,
               SetPincodeParams,
-              ValidatePhoneNumberRequest,
           ],
           'oneOf': [
           ],

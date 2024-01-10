@@ -12,11 +12,11 @@ import sys
 import unittest
 
 import openapi_client
-from openapi_client.model.field_errors_value import FieldErrorsValue
+from openapi_client.model.inline_response403 import InlineResponse403
 
 
-class TestFieldErrorsValue(unittest.TestCase):
-    """FieldErrorsValue unit test stubs"""
+class TestInlineResponse403(unittest.TestCase):
+    """InlineResponse403 unit test stubs"""
 
     def setUp(self):
         pass
@@ -24,10 +24,10 @@ class TestFieldErrorsValue(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testFieldErrorsValue(self):
-        """Test FieldErrorsValue"""
+    def testInlineResponse403(self):
+        """Test InlineResponse403"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = FieldErrorsValue()  # noqa: E501
+        # model = InlineResponse403()  # noqa: E501
         pass
 
 

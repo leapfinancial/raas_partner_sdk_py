@@ -12,10 +12,10 @@ import sys
 import unittest
 
 import openapi_client
+from openapi_client.model.inline_object import InlineObject
 from openapi_client.model.set_pincode_params import SetPincodeParams
-from openapi_client.model.validate_phone_number_request import ValidatePhoneNumberRequest
+globals()['InlineObject'] = InlineObject
 globals()['SetPincodeParams'] = SetPincodeParams
-globals()['ValidatePhoneNumberRequest'] = ValidatePhoneNumberRequest
 from openapi_client.model.set_pincode_params_partner import SetPincodeParamsPartner
 
 

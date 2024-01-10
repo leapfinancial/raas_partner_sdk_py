@@ -12,8 +12,8 @@ import sys
 import unittest
 
 import openapi_client
-from openapi_client.model.field_errors_value import FieldErrorsValue
-globals()['FieldErrorsValue'] = FieldErrorsValue
+from openapi_client.model.field_errors_addl_props import FieldErrorsAddlProps
+globals()['FieldErrorsAddlProps'] = FieldErrorsAddlProps
 from openapi_client.model.field_errors import FieldErrors
 
 

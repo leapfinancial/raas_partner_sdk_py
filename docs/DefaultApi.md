@@ -65,7 +65,7 @@ adds bank account to subscriber's source of funding
 import time
 import openapi_client
 from openapi_client.api import default_api
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
+from openapi_client.model.inline_response400 import InlineResponse400
 from openapi_client.model.add_bank_account_params_base import AddBankAccountParamsBase
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
@@ -155,10 +155,10 @@ adds a card to subscriber's source of funding
 import time
 import openapi_client
 from openapi_client.api import default_api
+from openapi_client.model.inline_response403 import InlineResponse403
 from openapi_client.model.add_payment_method_response import AddPaymentMethodResponse
-from openapi_client.model.validate_otp403_response import ValidateOTP403Response
 from openapi_client.model.add_card_partner_params import AddCardPartnerParams
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
+from openapi_client.model.inline_response400 import InlineResponse400
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -251,7 +251,7 @@ import time
 import openapi_client
 from openapi_client.api import default_api
 from openapi_client.model.create_contact_request_params_partner import CreateContactRequestParamsPartner
-from openapi_client.model.validate_otp403_response import ValidateOTP403Response
+from openapi_client.model.inline_response403 import InlineResponse403
 from openapi_client.model.validate_error import ValidateError
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
@@ -340,7 +340,7 @@ Creates a pincode for the user.  The pincode must be 6 digits long and only nume
 import time
 import openapi_client
 from openapi_client.api import default_api
-from openapi_client.model.validate_otp403_response import ValidateOTP403Response
+from openapi_client.model.inline_response403 import InlineResponse403
 from openapi_client.model.set_pincode_params_partner import SetPincodeParamsPartner
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
@@ -419,7 +419,7 @@ removes a payment method
 import time
 import openapi_client
 from openapi_client.api import default_api
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
+from openapi_client.model.inline_response400 import InlineResponse400
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -489,7 +489,7 @@ Gets available operation types by user country (as source country) and destinati
 import time
 import openapi_client
 from openapi_client.api import default_api
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
+from openapi_client.model.inline_response400 import InlineResponse400
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -577,7 +577,7 @@ Gets available payment method types by source country, destination country and o
 import time
 import openapi_client
 from openapi_client.api import default_api
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
+from openapi_client.model.inline_response400 import InlineResponse400
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -665,7 +665,7 @@ Name | Type | Description  | Notes
 import time
 import openapi_client
 from openapi_client.api import default_api
-from openapi_client.model.validate_otp403_response import ValidateOTP403Response
+from openapi_client.model.inline_response403 import InlineResponse403
 from openapi_client.model.cash_operators_params_base import CashOperatorsParamsBase
 from openapi_client.model.cash_operators import CashOperators
 from pprint import pprint
@@ -828,7 +828,7 @@ import time
 import openapi_client
 from openapi_client.api import default_api
 from openapi_client.model.corridor_dto import CorridorDTO
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
+from openapi_client.model.inline_response400 import InlineResponse400
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -912,7 +912,7 @@ import time
 import openapi_client
 from openapi_client.api import default_api
 from openapi_client.model.source_of_funding import SourceOfFunding
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
+from openapi_client.model.inline_response400 import InlineResponse400
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -1003,7 +1003,7 @@ import time
 import openapi_client
 from openapi_client.api import default_api
 from openapi_client.model.exchange_rate_dto import ExchangeRateDTO
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
+from openapi_client.model.inline_response400 import InlineResponse400
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -1255,7 +1255,7 @@ import openapi_client
 from openapi_client.api import default_api
 from openapi_client.model.raas_quote_transaction_response import RaasQuoteTransactionResponse
 from openapi_client.model.quote_transaction_base import QuoteTransactionBase
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
+from openapi_client.model.inline_response400 import InlineResponse400
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -1350,7 +1350,7 @@ import time
 import openapi_client
 from openapi_client.api import default_api
 from openapi_client.model.raa_s_payment_method import RaaSPaymentMethod
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
+from openapi_client.model.inline_response400 import InlineResponse400
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -1438,7 +1438,7 @@ Retrieve a payment method by ID
 import time
 import openapi_client
 from openapi_client.api import default_api
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
+from openapi_client.model.inline_response400 import InlineResponse400
 from openapi_client.model.raa_s_partner_payment_method import RaaSPartnerPaymentMethod
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
@@ -1527,7 +1527,7 @@ import openapi_client
 from openapi_client.api import default_api
 from openapi_client.model.user import User
 from openapi_client.model.validate_error import ValidateError
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
+from openapi_client.model.inline_response400 import InlineResponse400
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -1592,7 +1592,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_redis_status**
-> GetRedisStatus200Response get_redis_status()
+> InlineResponse200 get_redis_status()
 
 
 
@@ -1605,7 +1605,7 @@ import time
 import openapi_client
 from openapi_client.api import default_api
 from openapi_client.model.error_response import ErrorResponse
-from openapi_client.model.get_redis_status200_response import GetRedisStatus200Response
+from openapi_client.model.inline_response200 import InlineResponse200
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -1643,7 +1643,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**GetRedisStatus200Response**](GetRedisStatus200Response.md)
+[**InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -1680,8 +1680,8 @@ import time
 import openapi_client
 from openapi_client.api import default_api
 from openapi_client.model.session_link_response import SessionLinkResponse
+from openapi_client.model.inline_response400 import InlineResponse400
 from openapi_client.model.session_link_params import SessionLinkParams
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -1789,7 +1789,7 @@ import time
 import openapi_client
 from openapi_client.api import default_api
 from openapi_client.model.source_of_funding import SourceOfFunding
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
+from openapi_client.model.inline_response400 import InlineResponse400
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -1881,7 +1881,7 @@ import openapi_client
 from openapi_client.api import default_api
 from openapi_client.model.get_user_token_params import GetUserTokenParams
 from openapi_client.model.user_token_response import UserTokenResponse
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
+from openapi_client.model.inline_response400 import InlineResponse400
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -1963,7 +1963,7 @@ import time
 import openapi_client
 from openapi_client.api import default_api
 from openapi_client.model.session_link_response import SessionLinkResponse
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
+from openapi_client.model.inline_response400 import InlineResponse400
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -2040,7 +2040,7 @@ import time
 import openapi_client
 from openapi_client.api import default_api
 from openapi_client.model.is_phone_available_request import IsPhoneAvailableRequest
-from openapi_client.model.request_otp404_response import RequestOtp404Response
+from openapi_client.model.inline_response404 import InlineResponse404
 from openapi_client.model.is_phone_available_response import IsPhoneAvailableResponse
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
@@ -2502,7 +2502,7 @@ import time
 import openapi_client
 from openapi_client.api import default_api
 from openapi_client.model.receive_money_params import ReceiveMoneyParams
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
+from openapi_client.model.inline_response400 import InlineResponse400
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -2588,7 +2588,7 @@ import openapi_client
 from openapi_client.api import default_api
 from openapi_client.model.register_user_params import RegisterUserParams
 from openapi_client.model.user_token_response import UserTokenResponse
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
+from openapi_client.model.inline_response400 import InlineResponse400
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -2685,7 +2685,7 @@ import openapi_client
 from openapi_client.api import default_api
 from openapi_client.model.register_user_params import RegisterUserParams
 from openapi_client.model.user_token_response import UserTokenResponse
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
+from openapi_client.model.inline_response400 import InlineResponse400
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -2781,7 +2781,7 @@ import time
 import openapi_client
 from openapi_client.api import default_api
 from openapi_client.model.request_otp_params import RequestOTPParams
-from openapi_client.model.request_otp404_response import RequestOtp404Response
+from openapi_client.model.inline_response404 import InlineResponse404
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -2862,8 +2862,8 @@ Request money to a contact
 import time
 import openapi_client
 from openapi_client.api import default_api
+from openapi_client.model.inline_response403 import InlineResponse403
 from openapi_client.model.request_money_partner_params import RequestMoneyPartnerParams
-from openapi_client.model.validate_otp403_response import ValidateOTP403Response
 from openapi_client.model.pick_operation_detail_response_exclude_keyof_operation_detail_response_id_or_type_or_show_warning_screen import PickOperationDetailResponseExcludeKeyofOperationDetailResponseIdOrTypeOrShowWarningScreen
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
@@ -2953,8 +2953,8 @@ import time
 import openapi_client
 from openapi_client.api import default_api
 from openapi_client.model.send_money_response import SendMoneyResponse
+from openapi_client.model.inline_response400 import InlineResponse400
 from openapi_client.model.send_money_params import SendMoneyParams
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -3193,8 +3193,8 @@ void (empty response body)
 import time
 import openapi_client
 from openapi_client.api import default_api
+from openapi_client.model.inline_response403 import InlineResponse403
 from openapi_client.model.set_reference_code_params_base import SetReferenceCodeParamsBase
-from openapi_client.model.validate_otp403_response import ValidateOTP403Response
 from openapi_client.model.get_reference_code_response import GetReferenceCodeResponse
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
@@ -3361,7 +3361,7 @@ Gets operation status
 import time
 import openapi_client
 from openapi_client.api import default_api
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
+from openapi_client.model.inline_response400 import InlineResponse400
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -3443,7 +3443,7 @@ import openapi_client
 from openapi_client.api import default_api
 from openapi_client.model.user_update_params import UserUpdateParams
 from openapi_client.model.validate_error import ValidateError
-from openapi_client.model.get_user_token400_response import GetUserToken400Response
+from openapi_client.model.inline_response400 import InlineResponse400
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -3538,7 +3538,7 @@ Update a contact for a user
 import time
 import openapi_client
 from openapi_client.api import default_api
-from openapi_client.model.validate_otp403_response import ValidateOTP403Response
+from openapi_client.model.inline_response403 import InlineResponse403
 from openapi_client.model.validate_error import ValidateError
 from openapi_client.model.update_contact_request_params import UpdateContactRequestParams
 from pprint import pprint
@@ -3625,9 +3625,9 @@ void (empty response body)
 import time
 import openapi_client
 from openapi_client.api import default_api
-from openapi_client.model.validate_otp500_response import ValidateOTP500Response
-from openapi_client.model.validate_otp403_response import ValidateOTP403Response
-from openapi_client.model.request_otp404_response import RequestOtp404Response
+from openapi_client.model.inline_response403 import InlineResponse403
+from openapi_client.model.inline_response404 import InlineResponse404
+from openapi_client.model.inline_response500 import InlineResponse500
 from openapi_client.model.pick_validate_otp_params_exclude_keyof_validate_otp_params_device_id import PickValidateOTPParamsExcludeKeyofValidateOTPParamsDeviceId
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
@@ -3698,7 +3698,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **validate_phone_number**
-> str validate_phone_number(validate_phone_number_request)
+> str validate_phone_number(inline_object)
 
 
 
@@ -3709,8 +3709,8 @@ void (empty response body)
 import time
 import openapi_client
 from openapi_client.api import default_api
-from openapi_client.model.validate_phone_number_request import ValidatePhoneNumberRequest
-from openapi_client.model.validate_otp403_response import ValidateOTP403Response
+from openapi_client.model.inline_response403 import InlineResponse403
+from openapi_client.model.inline_object import InlineObject
 from pprint import pprint
 # Defining the host is optional and defaults to /v1
 # See configuration.py for a list of all supported configuration parameters.
@@ -3723,13 +3723,13 @@ configuration = openapi_client.Configuration(
 with openapi_client.ApiClient() as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    validate_phone_number_request = ValidatePhoneNumberRequest(
+    inline_object = InlineObject(
         phone="phone_example",
-    ) # ValidatePhoneNumberRequest | 
+    ) # InlineObject | 
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.validate_phone_number(validate_phone_number_request)
+        api_response = api_instance.validate_phone_number(inline_object)
         pprint(api_response)
     except openapi_client.ApiException as e:
         print("Exception when calling DefaultApi->validate_phone_number: %s\n" % e)
@@ -3740,7 +3740,7 @@ with openapi_client.ApiClient() as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **validate_phone_number_request** | [**ValidatePhoneNumberRequest**](ValidatePhoneNumberRequest.md)|  |
+ **inline_object** | [**InlineObject**](InlineObject.md)|  |
 
 ### Return type
 
@@ -3779,9 +3779,9 @@ No authorization required
 import time
 import openapi_client
 from openapi_client.api import default_api
-from openapi_client.model.validate_otp500_response import ValidateOTP500Response
-from openapi_client.model.validate_otp403_response import ValidateOTP403Response
+from openapi_client.model.inline_response403 import InlineResponse403
 from openapi_client.model.pick_validate_pin_code_params_exclude_keyof_validate_pin_code_params_device_id import PickValidatePINCodeParamsExcludeKeyofValidatePINCodeParamsDeviceId
+from openapi_client.model.inline_response500 import InlineResponse500
 from openapi_client.model.validate_error import ValidateError
 from pprint import pprint
 # Defining the host is optional and defaults to /v1

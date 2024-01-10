@@ -12,11 +12,11 @@ import sys
 import unittest
 
 import openapi_client
-from openapi_client.model.validate_phone_number_request import ValidatePhoneNumberRequest
+from openapi_client.model.field_errors_addl_props import FieldErrorsAddlProps
 
 
-class TestValidatePhoneNumberRequest(unittest.TestCase):
-    """ValidatePhoneNumberRequest unit test stubs"""
+class TestFieldErrorsAddlProps(unittest.TestCase):
+    """FieldErrorsAddlProps unit test stubs"""
 
     def setUp(self):
         pass
@@ -24,10 +24,10 @@ class TestValidatePhoneNumberRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testValidatePhoneNumberRequest(self):
-        """Test ValidatePhoneNumberRequest"""
+    def testFieldErrorsAddlProps(self):
+        """Test FieldErrorsAddlProps"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = ValidatePhoneNumberRequest()  # noqa: E501
+        # model = FieldErrorsAddlProps()  # noqa: E501
         pass
 
 

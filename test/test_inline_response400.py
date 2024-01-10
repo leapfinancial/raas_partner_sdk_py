@@ -12,11 +12,11 @@ import sys
 import unittest
 
 import openapi_client
-from openapi_client.model.get_redis_status200_response import GetRedisStatus200Response
+from openapi_client.model.inline_response400 import InlineResponse400
 
 
-class TestGetRedisStatus200Response(unittest.TestCase):
-    """GetRedisStatus200Response unit test stubs"""
+class TestInlineResponse400(unittest.TestCase):
+    """InlineResponse400 unit test stubs"""
 
     def setUp(self):
         pass
@@ -24,10 +24,10 @@ class TestGetRedisStatus200Response(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testGetRedisStatus200Response(self):
-        """Test GetRedisStatus200Response"""
+    def testInlineResponse400(self):
+        """Test InlineResponse400"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = GetRedisStatus200Response()  # noqa: E501
+        # model = InlineResponse400()  # noqa: E501
         pass
 
 

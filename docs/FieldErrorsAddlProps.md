@@ -1,4 +1,4 @@
-# FieldErrorsValue
+# FieldErrorsAddlProps
 
 
 ## Properties

@@ -12,11 +12,11 @@ import sys
 import unittest
 
 import openapi_client
-from openapi_client.model.validate_otp500_response import ValidateOTP500Response
+from openapi_client.model.inline_object import InlineObject
 
 
-class TestValidateOTP500Response(unittest.TestCase):
-    """ValidateOTP500Response unit test stubs"""
+class TestInlineObject(unittest.TestCase):
+    """InlineObject unit test stubs"""
 
     def setUp(self):
         pass
@@ -24,10 +24,10 @@ class TestValidateOTP500Response(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testValidateOTP500Response(self):
-        """Test ValidateOTP500Response"""
+    def testInlineObject(self):
+        """Test InlineObject"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = ValidateOTP500Response()  # noqa: E501
+        # model = InlineObject()  # noqa: E501
         pass
 
 

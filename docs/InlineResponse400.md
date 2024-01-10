@@ -1,4 +1,4 @@
-# GetUserToken400Response
+# InlineResponse400
 
 
 ## Properties

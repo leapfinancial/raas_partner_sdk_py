@@ -41,6 +41,7 @@ Name | Type | Description | Notes
 **custom_country_code** | **str** |  | [optional] 
 **facebook_public_user_name** | **str** |  | [optional] 
 **instagram_public_user_name** | **str** |  | [optional] 
+**account_code** | **str** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

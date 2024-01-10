@@ -12,11 +12,11 @@ import sys
 import unittest
 
 import openapi_client
-from openapi_client.model.request_otp404_response import RequestOtp404Response
+from openapi_client.model.inline_response500 import InlineResponse500
 
 
-class TestRequestOtp404Response(unittest.TestCase):
-    """RequestOtp404Response unit test stubs"""
+class TestInlineResponse500(unittest.TestCase):
+    """InlineResponse500 unit test stubs"""
 
     def setUp(self):
         pass
@@ -24,10 +24,10 @@ class TestRequestOtp404Response(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testRequestOtp404Response(self):
-        """Test RequestOtp404Response"""
+    def testInlineResponse500(self):
+        """Test InlineResponse500"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = RequestOtp404Response()  # noqa: E501
+        # model = InlineResponse500()  # noqa: E501
         pass
 
 
