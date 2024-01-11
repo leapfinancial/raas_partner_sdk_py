@@ -18,69 +18,87 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictBool, StrictFloat, StrictInt, StrictStr
+from pydantic import Field
 from raassdkpy.models.ignored_operation_data import IgnoredOperationData
 from raassdkpy.models.operation_user_detail import OperationUserDetail
 from raassdkpy.models.payment_method_response import PaymentMethodResponse
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
 
 class PickOperationDetailResponseExcludeKeyofOperationDetailResponseIdOrTypeOrShowWarningScreen(BaseModel):
     """
-    From T, pick a set of properties whose keys are in the union K  # noqa: E501
-    """
-    plat_id: Optional[StrictStr] = Field(None, alias="platId")
-    correlation_id: StrictStr = Field(..., alias="correlationId")
-    created_at: datetime = Field(..., alias="createdAt")
-    amount: Union[StrictFloat, StrictInt] = Field(...)
-    status: StrictStr = Field(...)
-    status_details: Optional[StrictStr] = Field(None, alias="statusDetails")
-    mobile_status: Optional[StrictStr] = Field(None, alias="mobileStatus")
+    From T, pick a set of properties whose keys are in the union K
+    """ # noqa: E501
+    plat_id: Optional[StrictStr] = Field(default=None, alias="platId")
+    correlation_id: StrictStr = Field(alias="correlationId")
+    created_at: datetime = Field(alias="createdAt")
+    amount: Union[StrictFloat, StrictInt]
+    status: StrictStr
+    status_details: Optional[StrictStr] = Field(default=None, alias="statusDetails")
+    mobile_status: Optional[StrictStr] = Field(default=None, alias="mobileStatus")
     reason: Optional[StrictStr] = None
-    code: StrictStr = Field(...)
-    recipient_amout: Union[StrictFloat, StrictInt] = Field(..., alias="recipientAmout")
-    sender_amount: Optional[Union[StrictFloat, StrictInt]] = Field(None, alias="senderAmount")
+    code: StrictStr
+    recipient_amout: Union[StrictFloat, StrictInt] = Field(alias="recipientAmout")
+    sender_amount: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="senderAmount")
     currency: Optional[StrictStr] = None
-    sender_currency: Optional[StrictStr] = Field(None, alias="senderCurrency")
-    recipient_currency: Optional[StrictStr] = Field(None, alias="recipientCurrency")
-    source_payment_method: Optional[PaymentMethodResponse] = Field(None, alias="sourcePaymentMethod")
-    destination_payment_method: Optional[PaymentMethodResponse] = Field(None, alias="destinationPaymentMethod")
-    source_fee: Optional[Union[StrictFloat, StrictInt]] = Field(None, alias="sourceFee")
-    transaction_fee: Optional[Union[StrictFloat, StrictInt]] = Field(None, alias="transactionFee")
-    destination_fee: Optional[Union[StrictFloat, StrictInt]] = Field(None, alias="destinationFee")
-    exchange_rate: Optional[Union[StrictFloat, StrictInt]] = Field(None, alias="exchangeRate")
-    has_reference_code: Optional[StrictBool] = Field(None, alias="hasReferenceCode")
-    from_user: OperationUserDetail = Field(..., alias="fromUser")
-    to_user: OperationUserDetail = Field(..., alias="toUser")
-    attribution_link: Optional[StrictStr] = Field(None, alias="attributionLink")
-    is_ignored: Optional[StrictBool] = Field(None, alias="isIgnored")
-    ignored_data: Optional[IgnoredOperationData] = Field(None, alias="ignoredData")
+    sender_currency: Optional[StrictStr] = Field(default=None, alias="senderCurrency")
+    recipient_currency: Optional[StrictStr] = Field(default=None, alias="recipientCurrency")
+    source_payment_method: Optional[PaymentMethodResponse] = Field(default=None, alias="sourcePaymentMethod")
+    destination_payment_method: Optional[PaymentMethodResponse] = Field(default=None, alias="destinationPaymentMethod")
+    source_fee: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="sourceFee")
+    transaction_fee: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="transactionFee")
+    destination_fee: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="destinationFee")
+    exchange_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="exchangeRate")
+    has_reference_code: Optional[StrictBool] = Field(default=None, alias="hasReferenceCode")
+    from_user: OperationUserDetail = Field(alias="fromUser")
+    to_user: OperationUserDetail = Field(alias="toUser")
+    attribution_link: Optional[StrictStr] = Field(default=None, alias="attributionLink")
+    is_ignored: Optional[StrictBool] = Field(default=None, alias="isIgnored")
+    ignored_data: Optional[IgnoredOperationData] = Field(default=None, alias="ignoredData")
     tenantfee: Optional[Union[StrictFloat, StrictInt]] = None
-    __properties = ["platId", "correlationId", "createdAt", "amount", "status", "statusDetails", "mobileStatus", "reason", "code", "recipientAmout", "senderAmount", "currency", "senderCurrency", "recipientCurrency", "sourcePaymentMethod", "destinationPaymentMethod", "sourceFee", "transactionFee", "destinationFee", "exchangeRate", "hasReferenceCode", "fromUser", "toUser", "attributionLink", "isIgnored", "ignoredData", "tenantfee"]
+    __properties: ClassVar[List[str]] = ["platId", "correlationId", "createdAt", "amount", "status", "statusDetails", "mobileStatus", "reason", "code", "recipientAmout", "senderAmount", "currency", "senderCurrency", "recipientCurrency", "sourcePaymentMethod", "destinationPaymentMethod", "sourceFee", "transactionFee", "destinationFee", "exchangeRate", "hasReferenceCode", "fromUser", "toUser", "attributionLink", "isIgnored", "ignoredData", "tenantfee"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {
+        "populate_by_name": True,
+        "validate_assignment": True,
+        "protected_namespaces": (),
+    }
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PickOperationDetailResponseExcludeKeyofOperationDetailResponseIdOrTypeOrShowWarningScreen:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of PickOperationDetailResponseExcludeKeyofOperationDetailResponseIdOrTypeOrShowWarningScreen from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={
+            },
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of source_payment_method
         if self.source_payment_method:
             _dict['sourcePaymentMethod'] = self.source_payment_method.to_dict()
@@ -99,41 +117,41 @@ class PickOperationDetailResponseExcludeKeyofOperationDetailResponseIdOrTypeOrSh
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PickOperationDetailResponseExcludeKeyofOperationDetailResponseIdOrTypeOrShowWarningScreen:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of PickOperationDetailResponseExcludeKeyofOperationDetailResponseIdOrTypeOrShowWarningScreen from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PickOperationDetailResponseExcludeKeyofOperationDetailResponseIdOrTypeOrShowWarningScreen.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = PickOperationDetailResponseExcludeKeyofOperationDetailResponseIdOrTypeOrShowWarningScreen.parse_obj({
-            "plat_id": obj.get("platId"),
-            "correlation_id": obj.get("correlationId"),
-            "created_at": obj.get("createdAt"),
+        _obj = cls.model_validate({
+            "platId": obj.get("platId"),
+            "correlationId": obj.get("correlationId"),
+            "createdAt": obj.get("createdAt"),
             "amount": obj.get("amount"),
             "status": obj.get("status"),
-            "status_details": obj.get("statusDetails"),
-            "mobile_status": obj.get("mobileStatus"),
+            "statusDetails": obj.get("statusDetails"),
+            "mobileStatus": obj.get("mobileStatus"),
             "reason": obj.get("reason"),
             "code": obj.get("code"),
-            "recipient_amout": obj.get("recipientAmout"),
-            "sender_amount": obj.get("senderAmount"),
+            "recipientAmout": obj.get("recipientAmout"),
+            "senderAmount": obj.get("senderAmount"),
             "currency": obj.get("currency"),
-            "sender_currency": obj.get("senderCurrency"),
-            "recipient_currency": obj.get("recipientCurrency"),
-            "source_payment_method": PaymentMethodResponse.from_dict(obj.get("sourcePaymentMethod")) if obj.get("sourcePaymentMethod") is not None else None,
-            "destination_payment_method": PaymentMethodResponse.from_dict(obj.get("destinationPaymentMethod")) if obj.get("destinationPaymentMethod") is not None else None,
-            "source_fee": obj.get("sourceFee"),
-            "transaction_fee": obj.get("transactionFee"),
-            "destination_fee": obj.get("destinationFee"),
-            "exchange_rate": obj.get("exchangeRate"),
-            "has_reference_code": obj.get("hasReferenceCode"),
-            "from_user": OperationUserDetail.from_dict(obj.get("fromUser")) if obj.get("fromUser") is not None else None,
-            "to_user": OperationUserDetail.from_dict(obj.get("toUser")) if obj.get("toUser") is not None else None,
-            "attribution_link": obj.get("attributionLink"),
-            "is_ignored": obj.get("isIgnored"),
-            "ignored_data": IgnoredOperationData.from_dict(obj.get("ignoredData")) if obj.get("ignoredData") is not None else None,
+            "senderCurrency": obj.get("senderCurrency"),
+            "recipientCurrency": obj.get("recipientCurrency"),
+            "sourcePaymentMethod": PaymentMethodResponse.from_dict(obj.get("sourcePaymentMethod")) if obj.get("sourcePaymentMethod") is not None else None,
+            "destinationPaymentMethod": PaymentMethodResponse.from_dict(obj.get("destinationPaymentMethod")) if obj.get("destinationPaymentMethod") is not None else None,
+            "sourceFee": obj.get("sourceFee"),
+            "transactionFee": obj.get("transactionFee"),
+            "destinationFee": obj.get("destinationFee"),
+            "exchangeRate": obj.get("exchangeRate"),
+            "hasReferenceCode": obj.get("hasReferenceCode"),
+            "fromUser": OperationUserDetail.from_dict(obj.get("fromUser")) if obj.get("fromUser") is not None else None,
+            "toUser": OperationUserDetail.from_dict(obj.get("toUser")) if obj.get("toUser") is not None else None,
+            "attributionLink": obj.get("attributionLink"),
+            "isIgnored": obj.get("isIgnored"),
+            "ignoredData": IgnoredOperationData.from_dict(obj.get("ignoredData")) if obj.get("ignoredData") is not None else None,
             "tenantfee": obj.get("tenantfee")
         })
         return _obj
