@@ -23,12 +23,17 @@ from pydantic import BaseModel, StrictBool, StrictFloat, StrictInt, StrictStr, f
 from pydantic import Field
 from raassdkpy.models.cip import CIP
 from raassdkpy.models.i_phone_info import IPhoneInfo
-from raassdkpy.date_time_encoder import DateTimeEncoder
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
     
+class DateTimeEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, datetime):
+            return o.isoformat()
+
+        return super().default(o)  
 
 
 class User(BaseModel):
