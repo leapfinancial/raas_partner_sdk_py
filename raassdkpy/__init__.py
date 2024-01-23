@@ -192,5 +192,6 @@ from raassdkpy.models.validate_otp403_response import ValidateOTP403Response
 from raassdkpy.models.validate_otp500_response import ValidateOTP500Response
 from raassdkpy.models.validate_otp_params import ValidateOTPParams
 from raassdkpy.models.validate_pin_code_params import ValidatePINCodeParams
+from raassdkpy.models.validate_phone_number_request import ValidatePhoneNumberRequest
 from raassdkpy.models.videos_url import VideosUrl
 from raassdkpy.models.white_label_response import WhiteLabelResponse
