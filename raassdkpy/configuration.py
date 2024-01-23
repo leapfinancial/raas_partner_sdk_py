@@ -87,7 +87,7 @@ conf = raassdkpy.Configuration(
                  ) -> None:
         """Constructor
         """
-        self._base_path = "/v1" if host is None else host
+        self._base_path = "https://raas-app-qa.nomas.cash/docs/v1" if host is None else host
         """Default Base url
         """
         self.server_index = 0 if server_index is None and host is None else server_index
@@ -386,6 +386,15 @@ conf = raassdkpy.Configuration(
                     'api_key',
                 ),
             }
+        if 'user_auth' in self.api_key:
+            auth['user_auth'] = {
+                'type': 'api_key',
+                'in': 'header',
+                'key': 'user_auth',
+                'value': self.get_api_key_with_prefix(
+                    'user_auth',
+                ),
+            }
         return auth
 
     def to_debug_report(self):
@@ -407,8 +416,16 @@ conf = raassdkpy.Configuration(
         """
         return [
             {
-                'url': "/v1",
-                'description': "No description provided",
+                'url': "https://raas-app-qa.nomas.cash/docs/v1",
+                'description': "QA",
+            },
+            {
+                'url': "https://raas-app-qa.nomas.cash/docs/v1",
+                'description': "Dev",
+            },
+            {
+                'url': "https://raas-app-qa.nomas.cash/docs/v1",
+                'description': "Prod",
             }
         ]
 
