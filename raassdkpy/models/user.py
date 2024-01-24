@@ -18,16 +18,11 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import Any, ClassVar, Dict, List, Optional, Union
-from pydantic import BaseModel, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
-from pydantic import Field
+from typing import Optional, Union
+from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr, validator
 from raassdkpy.models.cip import CIP
 from raassdkpy.models.i_phone_info import IPhoneInfo
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
-    
+
 class DateTimeEncoder(json.JSONEncoder):
     def default(self, o):
         if isinstance(o, datetime):
@@ -35,52 +30,51 @@ class DateTimeEncoder(json.JSONEncoder):
 
         return super().default(o)  
 
-
 class User(BaseModel):
     """
     User
-    """ # noqa: E501
-    id: StrictStr
+    """
+    id: StrictStr = Field(...)
     email: Optional[StrictStr] = None
-    first_name: Optional[StrictStr] = Field(default=None, alias="firstName")
-    last_name: Optional[StrictStr] = Field(default=None, alias="lastName")
-    middle_name: Optional[StrictStr] = Field(default=None, alias="middleName")
-    second_last_name: Optional[StrictStr] = Field(default=None, alias="secondLastName")
+    first_name: Optional[StrictStr] = Field(None, alias="firstName")
+    last_name: Optional[StrictStr] = Field(None, alias="lastName")
+    middle_name: Optional[StrictStr] = Field(None, alias="middleName")
+    second_last_name: Optional[StrictStr] = Field(None, alias="secondLastName")
     address1: Optional[StrictStr] = None
     address2: Optional[StrictStr] = None
-    place_id: Optional[StrictStr] = Field(default=None, alias="placeId")
+    place_id: Optional[StrictStr] = Field(None, alias="placeId")
     country: Optional[StrictStr] = None
-    address_description: Optional[StrictStr] = Field(default=None, description="Here we save some description about direcction for example: Local 304, next to the grocery store", alias="addressDescription")
+    address_description: Optional[StrictStr] = Field(None, alias="addressDescription", description="Here we save some description about direcction for example: Local 304, next to the grocery store")
     gender: Optional[StrictStr] = None
     dob: Optional[datetime] = None
     country_id: Optional[StrictStr] = None
     status: Optional[StrictStr] = None
-    phone_number: Optional[StrictStr] = Field(default=None, alias="phoneNumber")
-    phone_verified: Optional[StrictBool] = Field(default=None, alias="phoneVerified")
+    phone_number: Optional[StrictStr] = Field(None, alias="phoneNumber")
+    phone_verified: Optional[StrictBool] = Field(None, alias="phoneVerified")
     cip: Optional[CIP] = None
-    first_time: Optional[StrictBool] = Field(default=None, alias="firstTime")
-    country_code: Optional[StrictStr] = Field(default=None, alias="countryCode")
+    first_time: Optional[StrictBool] = Field(None, alias="firstTime")
+    country_code: Optional[StrictStr] = Field(None, alias="countryCode")
     city: Optional[StrictStr] = None
     zipcode: Optional[StrictStr] = None
     state: Optional[StrictStr] = None
-    birth_state: Optional[StrictStr] = Field(default=None, alias="birthState")
-    place_detail: Optional[StrictStr] = Field(default=None, description="Here we save the google maps places address details", alias="placeDetail")
-    pincode: Optional[StrictStr] = Field(default=None, description="Pincode - used to validate user in Raas")
-    has_pincode: Optional[StrictBool] = Field(default=None, alias="hasPincode")
-    password: Optional[StrictStr] = Field(default=None, description="Used to store Numi Plat pincode. It's not used to validate  user in Raas")
-    phone_info: Optional[IPhoneInfo] = Field(default=None, alias="phoneInfo")
-    tenant_id: StrictStr = Field(alias="tenantId")
-    tenant_code: StrictStr = Field(alias="tenantCode")
+    birth_state: Optional[StrictStr] = Field(None, alias="birthState")
+    place_detail: Optional[StrictStr] = Field(None, alias="placeDetail", description="Here we save the google maps places address details")
+    pincode: Optional[StrictStr] = Field(None, description="Pincode - used to validate user in Raas")
+    has_pincode: Optional[StrictBool] = Field(None, alias="hasPincode")
+    password: Optional[StrictStr] = Field(None, description="Used to store Numi Plat pincode. It's not used to validate  user in Raas")
+    phone_info: Optional[IPhoneInfo] = Field(None, alias="phoneInfo")
+    tenant_id: StrictStr = Field(..., alias="tenantId")
+    tenant_code: StrictStr = Field(..., alias="tenantCode")
     latitude: Optional[Union[StrictFloat, StrictInt]] = None
     longitude: Optional[Union[StrictFloat, StrictInt]] = None
-    profile_picture_url: Optional[StrictStr] = Field(default=None, alias="profilePictureUrl")
-    custom_country_code: Optional[StrictStr] = Field(default=None, alias="customCountryCode")
-    facebook_public_user_name: Optional[StrictStr] = Field(default=None, alias="facebookPublicUserName")
-    instagram_public_user_name: Optional[StrictStr] = Field(default=None, alias="instagramPublicUserName")
-    account_code: Optional[StrictStr] = Field(default=None, alias="accountCode")
-    __properties: ClassVar[List[str]] = ["id", "email", "firstName", "lastName", "middleName", "secondLastName", "address1", "address2", "placeId", "country", "addressDescription", "gender", "dob", "country_id", "status", "phoneNumber", "phoneVerified", "cip", "firstTime", "countryCode", "city", "zipcode", "state", "birthState", "placeDetail", "pincode", "hasPincode", "password", "phoneInfo", "tenantId", "tenantCode", "latitude", "longitude", "profilePictureUrl", "customCountryCode", "facebookPublicUserName", "instagramPublicUserName", "accountCode"]
+    profile_picture_url: Optional[StrictStr] = Field(None, alias="profilePictureUrl")
+    custom_country_code: Optional[StrictStr] = Field(None, alias="customCountryCode")
+    facebook_public_user_name: Optional[StrictStr] = Field(None, alias="facebookPublicUserName")
+    instagram_public_user_name: Optional[StrictStr] = Field(None, alias="instagramPublicUserName")
+    account_code: Optional[StrictStr] = Field(None, alias="accountCode")
+    __properties = ["id", "email", "firstName", "lastName", "middleName", "secondLastName", "address1", "address2", "placeId", "country", "addressDescription", "gender", "dob", "country_id", "status", "phoneNumber", "phoneVerified", "cip", "firstTime", "countryCode", "city", "zipcode", "state", "birthState", "placeDetail", "pincode", "hasPincode", "password", "phoneInfo", "tenantId", "tenantCode", "latitude", "longitude", "profilePictureUrl", "customCountryCode", "facebookPublicUserName", "instagramPublicUserName", "accountCode"]
 
-    @field_validator('status')
+    @validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -90,12 +84,10 @@ class User(BaseModel):
             raise ValueError("must be one of enum values ('new', 'ready')")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -103,30 +95,19 @@ class User(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict(),cls=DateTimeEncoder)
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> User:
         """Create an instance of User from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of cip
         if self.cip:
             _dict['cip'] = self.cip.to_dict()
@@ -136,53 +117,53 @@ class User(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> User:
         """Create an instance of User from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return User.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = User.parse_obj({
             "id": obj.get("id"),
             "email": obj.get("email"),
-            "firstName": obj.get("firstName"),
-            "lastName": obj.get("lastName"),
-            "middleName": obj.get("middleName"),
-            "secondLastName": obj.get("secondLastName"),
+            "first_name": obj.get("firstName"),
+            "last_name": obj.get("lastName"),
+            "middle_name": obj.get("middleName"),
+            "second_last_name": obj.get("secondLastName"),
             "address1": obj.get("address1"),
             "address2": obj.get("address2"),
-            "placeId": obj.get("placeId"),
+            "place_id": obj.get("placeId"),
             "country": obj.get("country"),
-            "addressDescription": obj.get("addressDescription"),
+            "address_description": obj.get("addressDescription"),
             "gender": obj.get("gender"),
             "dob": obj.get("dob"),
             "country_id": obj.get("country_id"),
             "status": obj.get("status"),
-            "phoneNumber": obj.get("phoneNumber"),
-            "phoneVerified": obj.get("phoneVerified"),
+            "phone_number": obj.get("phoneNumber"),
+            "phone_verified": obj.get("phoneVerified"),
             "cip": CIP.from_dict(obj.get("cip")) if obj.get("cip") is not None else None,
-            "firstTime": obj.get("firstTime"),
-            "countryCode": obj.get("countryCode"),
+            "first_time": obj.get("firstTime"),
+            "country_code": obj.get("countryCode"),
             "city": obj.get("city"),
             "zipcode": obj.get("zipcode"),
             "state": obj.get("state"),
-            "birthState": obj.get("birthState"),
-            "placeDetail": obj.get("placeDetail"),
+            "birth_state": obj.get("birthState"),
+            "place_detail": obj.get("placeDetail"),
             "pincode": obj.get("pincode"),
-            "hasPincode": obj.get("hasPincode"),
+            "has_pincode": obj.get("hasPincode"),
             "password": obj.get("password"),
-            "phoneInfo": IPhoneInfo.from_dict(obj.get("phoneInfo")) if obj.get("phoneInfo") is not None else None,
-            "tenantId": obj.get("tenantId"),
-            "tenantCode": obj.get("tenantCode"),
+            "phone_info": IPhoneInfo.from_dict(obj.get("phoneInfo")) if obj.get("phoneInfo") is not None else None,
+            "tenant_id": obj.get("tenantId"),
+            "tenant_code": obj.get("tenantCode"),
             "latitude": obj.get("latitude"),
             "longitude": obj.get("longitude"),
-            "profilePictureUrl": obj.get("profilePictureUrl"),
-            "customCountryCode": obj.get("customCountryCode"),
-            "facebookPublicUserName": obj.get("facebookPublicUserName"),
-            "instagramPublicUserName": obj.get("instagramPublicUserName"),
-            "accountCode": obj.get("accountCode")
+            "profile_picture_url": obj.get("profilePictureUrl"),
+            "custom_country_code": obj.get("customCountryCode"),
+            "facebook_public_user_name": obj.get("facebookPublicUserName"),
+            "instagram_public_user_name": obj.get("instagramPublicUserName"),
+            "account_code": obj.get("accountCode")
         })
         return _obj
 
