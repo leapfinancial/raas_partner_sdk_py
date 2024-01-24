@@ -68,7 +68,7 @@ class IsPhoneAvailableResponse(BaseModel):
         _obj = IsPhoneAvailableResponse.parse_obj({
             "available": obj.get("available"),
             "verified": obj.get("verified"),
-            "has_pincode": obj.get("hasPincode")
+            "has_pincode": obj.get("has_pincode")
         })
         return _obj
 
