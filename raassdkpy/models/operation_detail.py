@@ -18,76 +18,58 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import Any, ClassVar, Dict, List, Optional, Union
-from pydantic import BaseModel, StrictBool, StrictFloat, StrictInt, StrictStr
-from pydantic import Field
+from typing import Any, Optional, Union
+from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from raassdkpy.models.operation_user_detail import OperationUserDetail
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
 
 class OperationDetail(BaseModel):
     """
     OperationDetail
-    """ # noqa: E501
-    id: StrictStr
-    type: StrictStr
-    created_at: datetime = Field(alias="createdAt")
-    status: StrictStr
+    """
+    id: StrictStr = Field(...)
+    type: StrictStr = Field(...)
+    created_at: datetime = Field(..., alias="createdAt")
+    status: StrictStr = Field(...)
     reason: Optional[StrictStr] = None
-    code: StrictStr
-    amount: Union[StrictFloat, StrictInt]
-    sender_amount: Union[StrictFloat, StrictInt] = Field(alias="senderAmount")
-    recipient_amout: Union[StrictFloat, StrictInt] = Field(alias="recipientAmout")
+    code: StrictStr = Field(...)
+    amount: Union[StrictFloat, StrictInt] = Field(...)
+    sender_amount: Union[StrictFloat, StrictInt] = Field(..., alias="senderAmount")
+    recipient_amout: Union[StrictFloat, StrictInt] = Field(..., alias="recipientAmout")
     currency: Optional[StrictStr] = None
-    sender_currency: Optional[StrictStr] = Field(default=None, alias="senderCurrency")
-    recipient_currency: Optional[StrictStr] = Field(default=None, alias="recipientCurrency")
-    exchange_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="exchangeRate")
-    from_user: OperationUserDetail = Field(alias="fromUser")
-    to_user: OperationUserDetail = Field(alias="toUser")
-    attribution_link: Optional[StrictStr] = Field(default=None, alias="attributionLink")
-    is_ignored: Optional[StrictBool] = Field(default=None, alias="isIgnored")
-    ignored_data: Optional[Any] = Field(default=None, alias="ignoredData")
-    __properties: ClassVar[List[str]] = ["id", "type", "createdAt", "status", "reason", "code", "amount", "senderAmount", "recipientAmout", "currency", "senderCurrency", "recipientCurrency", "exchangeRate", "fromUser", "toUser", "attributionLink", "isIgnored", "ignoredData"]
+    sender_currency: Optional[StrictStr] = Field(None, alias="senderCurrency")
+    recipient_currency: Optional[StrictStr] = Field(None, alias="recipientCurrency")
+    exchange_rate: Optional[Union[StrictFloat, StrictInt]] = Field(None, alias="exchangeRate")
+    from_user: OperationUserDetail = Field(..., alias="fromUser")
+    to_user: OperationUserDetail = Field(..., alias="toUser")
+    attribution_link: Optional[StrictStr] = Field(None, alias="attributionLink")
+    is_ignored: Optional[StrictBool] = Field(None, alias="isIgnored")
+    ignored_data: Optional[Any] = Field(None, alias="ignoredData")
+    __properties = ["id", "type", "createdAt", "status", "reason", "code", "amount", "senderAmount", "recipientAmout", "currency", "senderCurrency", "recipientCurrency", "exchangeRate", "fromUser", "toUser", "attributionLink", "isIgnored", "ignoredData"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> OperationDetail:
         """Create an instance of OperationDetail from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude={
-            },
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of from_user
         if self.from_user:
             _dict['fromUser'] = self.from_user.to_dict()
@@ -95,40 +77,40 @@ class OperationDetail(BaseModel):
         if self.to_user:
             _dict['toUser'] = self.to_user.to_dict()
         # set to None if ignored_data (nullable) is None
-        # and model_fields_set contains the field
-        if self.ignored_data is None and "ignored_data" in self.model_fields_set:
+        # and __fields_set__ contains the field
+        if self.ignored_data is None and "ignored_data" in self.__fields_set__:
             _dict['ignoredData'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Dict) -> Self:
+    def from_dict(cls, obj: dict) -> OperationDetail:
         """Create an instance of OperationDetail from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return OperationDetail.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = OperationDetail.parse_obj({
             "id": obj.get("id"),
             "type": obj.get("type"),
-            "createdAt": obj.get("createdAt"),
+            "created_at": obj.get("createdAt"),
             "status": obj.get("status"),
             "reason": obj.get("reason"),
             "code": obj.get("code"),
             "amount": obj.get("amount"),
-            "senderAmount": obj.get("senderAmount"),
-            "recipientAmout": obj.get("recipientAmout"),
+            "sender_amount": obj.get("senderAmount"),
+            "recipient_amout": obj.get("recipientAmout"),
             "currency": obj.get("currency"),
-            "senderCurrency": obj.get("senderCurrency"),
-            "recipientCurrency": obj.get("recipientCurrency"),
-            "exchangeRate": obj.get("exchangeRate"),
-            "fromUser": OperationUserDetail.from_dict(obj.get("fromUser")) if obj.get("fromUser") is not None else None,
-            "toUser": OperationUserDetail.from_dict(obj.get("toUser")) if obj.get("toUser") is not None else None,
-            "attributionLink": obj.get("attributionLink"),
-            "isIgnored": obj.get("isIgnored"),
-            "ignoredData": obj.get("ignoredData")
+            "sender_currency": obj.get("senderCurrency"),
+            "recipient_currency": obj.get("recipientCurrency"),
+            "exchange_rate": obj.get("exchangeRate"),
+            "from_user": OperationUserDetail.from_dict(obj.get("fromUser")) if obj.get("fromUser") is not None else None,
+            "to_user": OperationUserDetail.from_dict(obj.get("toUser")) if obj.get("toUser") is not None else None,
+            "attribution_link": obj.get("attributionLink"),
+            "is_ignored": obj.get("isIgnored"),
+            "ignored_data": obj.get("ignoredData")
         })
         return _obj
 
