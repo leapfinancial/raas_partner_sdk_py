@@ -76,6 +76,8 @@ class ExchangeRateDTO(BaseModel):
             "currencyCodeDest": obj.get("currencyCodeDest"),
             "currencyCodeSrc": obj.get("currencyCodeSrc"),
             "exchangeRate": obj.get("exchangeRate"),
+            "exchangeRateUpdatedAt": obj.get("exchangeRateUpdatedAt"),
+
         })
         return _obj
 
