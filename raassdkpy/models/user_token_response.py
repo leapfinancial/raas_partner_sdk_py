@@ -63,12 +63,12 @@ class UserTokenResponse(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return UserTokenResponse.parse_obj(obj)
+            return UserTokenResponse.model_validate(obj)
 
-        _obj = UserTokenResponse.parse_obj({
+        _obj = UserTokenResponse.model_validate({
             "user_id": obj.get("userId"),
             "status": obj.get("status"),
-            "status_detail": obj.get("statusDetail")
+            "status_detail": obj.get("statusDetail"),
         })
         return _obj
 
