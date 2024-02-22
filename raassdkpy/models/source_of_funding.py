@@ -90,16 +90,7 @@ class SourceOfFunding(BaseModel):
             "name": obj.get("name"),
             "token_data": obj.get("tokenData"),
             "card_network": obj.get("cardNetwork"),
-            "currency": obj.get("currency"),
-            "isPrimary": obj.get("isPrimary"),
-            "accountNumber": obj.get("accountNumber"),
-            "bankEntityNumber": obj.get("bankEntityNumber"),
-            "expirationDate": obj.get("expirationDate"),
-            "expirationMonth": obj.get("expirationMonth"),
-            "expirationYear": obj.get("expirationYear"),
-            "cardType": obj.get("cardType"),
-            "tokenData": obj.get("tokenData"),
-            "cardNetwork": obj.get("cardNetwork")
+            "currency": obj.get("currency")
         })
         return _obj
 

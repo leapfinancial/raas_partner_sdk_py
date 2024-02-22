@@ -21,6 +21,7 @@ from datetime import datetime
 from typing import Optional, Union
 from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr, validator
 from raassdkpy.models.available_payment_methods import AvailablePaymentMethods
+from raassdkpy.models.payment_method_status import PaymentMethodStatus
 from raassdkpy.models.payment_token import PaymentToken
 
 class RaaSPaymentMethod(BaseModel):
@@ -28,6 +29,7 @@ class RaaSPaymentMethod(BaseModel):
     RaaSPaymentMethod
     """
     payment_token: Optional[PaymentToken] = Field(None, alias="paymentToken")
+    status: Optional[PaymentMethodStatus] = None
     application: Optional[StrictStr] = None
     account_id: Optional[StrictStr] = Field(None, alias="accountId")
     longitude: Optional[Union[StrictFloat, StrictInt]] = None
@@ -61,8 +63,8 @@ class RaaSPaymentMethod(BaseModel):
     is_primary: Optional[StrictBool] = Field(None, alias="isPrimary")
     type: AvailablePaymentMethods = Field(...)
     name: Optional[StrictStr] = None
-    id: Optional[StrictStr] = Field(None, alias="Id")
-    __properties = ["paymentToken", "application", "accountId", "longitude", "latitude", "phoneNumber", "country", "zipCode", "state", "city", "address2", "address1", "currency", "externalId", "cardNetwork", "cardtype", "securityCode", "expirationMonth", "expirationYear", "expirationDate", "nameOnCard", "number", "beneficiaryAccountId", "tokenData", "cardType", "accountNumber", "bankEntityNumber", "bankName", "bankAccountType", "updatedAt", "createdAt", "isPrimary", "type", "name", "Id"]
+    id: Optional[StrictStr] = None
+    __properties = ["paymentToken", "status", "application", "accountId", "longitude", "latitude", "phoneNumber", "country", "zipCode", "state", "city", "address2", "address1", "currency", "externalId", "cardNetwork", "cardtype", "securityCode", "expirationMonth", "expirationYear", "expirationDate", "nameOnCard", "number", "beneficiaryAccountId", "tokenData", "cardType", "accountNumber", "bankEntityNumber", "bankName", "bankAccountType", "updatedAt", "createdAt", "isPrimary", "type", "name", "id"]
 
     @validator('cardtype')
     def cardtype_validate_enum(cls, value):
@@ -134,6 +136,7 @@ class RaaSPaymentMethod(BaseModel):
 
         _obj = RaaSPaymentMethod.parse_obj({
             "payment_token": PaymentToken.from_dict(obj.get("paymentToken")) if obj.get("paymentToken") is not None else None,
+            "status": obj.get("status"),
             "application": obj.get("application"),
             "account_id": obj.get("accountId"),
             "longitude": obj.get("longitude"),
@@ -167,7 +170,7 @@ class RaaSPaymentMethod(BaseModel):
             "is_primary": obj.get("isPrimary"),
             "type": obj.get("type"),
             "name": obj.get("name"),
-            "id": obj.get("Id")
+            "id": obj.get("id")
         })
         return _obj
 

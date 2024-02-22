@@ -18,18 +18,16 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict
+
 from pydantic import BaseModel, Field, StrictStr
 
-class CashNetwork(BaseModel):
+class ReplaceCardParams(BaseModel):
     """
-    id: Unique Identifier of CashNetwork  name: Name of Network  cashProvider: Enum that identifies the type of provider use {Numi, Greendot, Inpamex, NumiCashDelivery, Incomm}   imageUrl: URL of image to identify this network  # noqa: E501
+    ReplaceCardParams
     """
-    id: StrictStr = Field(...)
-    name: StrictStr = Field(...)
-    cash_provider: Dict[str, Any] = Field(..., alias="cashProvider")
-    image_url: StrictStr = Field(..., alias="imageUrl")
-    __properties = ["id", "name", "cashProvider", "imageUrl"]
+    payment_method_id: StrictStr = Field(..., alias="paymentMethodId")
+    op_plat_id: StrictStr = Field(..., alias="opPlatId")
+    __properties = ["paymentMethodId", "opPlatId"]
 
     class Config:
         """Pydantic configuration"""
@@ -45,8 +43,8 @@ class CashNetwork(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> CashNetwork:
-        """Create an instance of CashNetwork from a JSON string"""
+    def from_json(cls, json_str: str) -> ReplaceCardParams:
+        """Create an instance of ReplaceCardParams from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -58,19 +56,17 @@ class CashNetwork(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> CashNetwork:
-        """Create an instance of CashNetwork from a dict"""
+    def from_dict(cls, obj: dict) -> ReplaceCardParams:
+        """Create an instance of ReplaceCardParams from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return CashNetwork.parse_obj(obj)
+            return ReplaceCardParams.parse_obj(obj)
 
-        _obj = CashNetwork.parse_obj({
-            "id": obj.get("id"),
-            "name": obj.get("name"),
-            "cash_provider": obj.get("cashProvider"),
-            "image_url": obj.get("imageUrl")
+        _obj = ReplaceCardParams.parse_obj({
+            "payment_method_id": obj.get("paymentMethodId"),
+            "op_plat_id": obj.get("opPlatId")
         })
         return _obj
 

@@ -48,6 +48,7 @@ from raassdkpy.models.pick_operation_detail_response_exclude_keyof_operation_det
 from raassdkpy.models.pick_validate_otp_params_exclude_keyof_validate_otp_params_device_id import PickValidateOTPParamsExcludeKeyofValidateOTPParamsDeviceId
 from raassdkpy.models.pick_validate_pin_code_params_exclude_keyof_validate_pin_code_params_device_id import PickValidatePINCodeParamsExcludeKeyofValidatePINCodeParamsDeviceId
 from raassdkpy.models.quote_transaction_base import QuoteTransactionBase
+from raassdkpy.models.quote_transaction_partners_base import QuoteTransactionPartnersBase
 from raassdkpy.models.raa_s_partner_payment_method import RaaSPartnerPaymentMethod
 from raassdkpy.models.raa_s_payment_method import RaaSPaymentMethod
 from raassdkpy.models.raas_pre_quote_request import RaasPreQuoteRequest
@@ -55,6 +56,7 @@ from raassdkpy.models.raas_pre_quote_response import RaasPreQuoteResponse
 from raassdkpy.models.raas_quote_transaction_response import RaasQuoteTransactionResponse
 from raassdkpy.models.receive_money_params import ReceiveMoneyParams
 from raassdkpy.models.register_user_params import RegisterUserParams
+from raassdkpy.models.replace_card_params import ReplaceCardParams
 from raassdkpy.models.request_money_partner_params import RequestMoneyPartnerParams
 from raassdkpy.models.request_otp_params import RequestOTPParams
 from raassdkpy.models.send_money_params import SendMoneyParams
@@ -3642,6 +3644,7 @@ class DefaultApi:
 
         _response_types_map = {
             '200': "IsPhoneAvailableResponse",
+            '400': "ErrorResponse",
             '500': "RequestOtp404Response",
         }
 
@@ -3787,6 +3790,162 @@ class DefaultApi:
 
         return self.api_client.call_api(
             '/user/contacts/{userToken}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def operation_quote(self, user_token : StrictStr, quote_transaction_partners_base : Annotated[QuoteTransactionPartnersBase, Field(..., description="{@link QuoteTransactionBase}")], **kwargs) -> RaasQuoteTransactionResponse:  # noqa: E501
+        """operation_quote  # noqa: E501
+
+         Retrieve quote for the operation  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.operation_quote(user_token, quote_transaction_partners_base, async_req=True)
+        >>> result = thread.get()
+
+        :param user_token: (required)
+        :type user_token: str
+        :param quote_transaction_partners_base: {@link QuoteTransactionBase} (required)
+        :type quote_transaction_partners_base: QuoteTransactionPartnersBase
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: RaasQuoteTransactionResponse
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the operation_quote_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.operation_quote_with_http_info(user_token, quote_transaction_partners_base, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def operation_quote_with_http_info(self, user_token : StrictStr, quote_transaction_partners_base : Annotated[QuoteTransactionPartnersBase, Field(..., description="{@link QuoteTransactionBase}")], **kwargs) -> ApiResponse:  # noqa: E501
+        """operation_quote  # noqa: E501
+
+         Retrieve quote for the operation  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.operation_quote_with_http_info(user_token, quote_transaction_partners_base, async_req=True)
+        >>> result = thread.get()
+
+        :param user_token: (required)
+        :type user_token: str
+        :param quote_transaction_partners_base: {@link QuoteTransactionBase} (required)
+        :type quote_transaction_partners_base: QuoteTransactionPartnersBase
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(RaasQuoteTransactionResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'user_token',
+            'quote_transaction_partners_base'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method operation_quote" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['user_token'] is not None:
+            _path_params['userToken'] = _params['user_token']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['quote_transaction_partners_base'] is not None:
+            _body_params = _params['quote_transaction_partners_base']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['api_key']  # noqa: E501
+
+        _response_types_map = {
+            '200': "RaasQuoteTransactionResponse",
+            '500': "GetUserToken400Response",
+        }
+
+        return self.api_client.call_api(
+            '/user/operations/operation_quote/{userToken}', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -4686,6 +4845,157 @@ class DefaultApi:
 
         return self.api_client.call_api(
             '/auth/register-user-v2', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def replace_payment_method(self, user_id : StrictStr, replace_card_params : ReplaceCardParams, **kwargs) -> None:  # noqa: E501
+        """replace_payment_method  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.replace_payment_method(user_id, replace_card_params, async_req=True)
+        >>> result = thread.get()
+
+        :param user_id: (required)
+        :type user_id: str
+        :param replace_card_params: (required)
+        :type replace_card_params: ReplaceCardParams
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the replace_payment_method_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.replace_payment_method_with_http_info(user_id, replace_card_params, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def replace_payment_method_with_http_info(self, user_id : StrictStr, replace_card_params : ReplaceCardParams, **kwargs) -> ApiResponse:  # noqa: E501
+        """replace_payment_method  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.replace_payment_method_with_http_info(user_id, replace_card_params, async_req=True)
+        >>> result = thread.get()
+
+        :param user_id: (required)
+        :type user_id: str
+        :param replace_card_params: (required)
+        :type replace_card_params: ReplaceCardParams
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'user_id',
+            'replace_card_params'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method replace_payment_method" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['user_id'] is not None:
+            _path_params['userId'] = _params['user_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['replace_card_params'] is not None:
+            _body_params = _params['replace_card_params']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['api_key']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/user/operations/replace-payment-method/{userId}', 'POST',
             _path_params,
             _query_params,
             _header_params,

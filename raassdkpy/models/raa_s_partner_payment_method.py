@@ -34,8 +34,8 @@ class RaaSPartnerPaymentMethod(BaseModel):
     bank_name: Optional[StrictStr] = Field(None, alias="bankName")
     is_primary: Optional[StrictBool] = Field(None, alias="isPrimary")
     name: Optional[StrictStr] = None
-    id: Optional[StrictStr] = Field(None, alias="Id")
-    __properties = ["currency", "bankAccountType", "cardtype", "number", "accountNumber", "bankEntityNumber", "bankName", "isPrimary", "name", "Id"]
+    id: Optional[StrictStr] = None
+    __properties = ["currency", "bankAccountType", "cardtype", "number", "accountNumber", "bankEntityNumber", "bankName", "isPrimary", "name", "id"]
 
     @validator('bank_account_type')
     def bank_account_type_validate_enum(cls, value):
@@ -102,7 +102,7 @@ class RaaSPartnerPaymentMethod(BaseModel):
             "bank_name": obj.get("bankName"),
             "is_primary": obj.get("isPrimary"),
             "name": obj.get("name"),
-            "id": obj.get("Id")
+            "id": obj.get("id")
         })
         return _obj
 

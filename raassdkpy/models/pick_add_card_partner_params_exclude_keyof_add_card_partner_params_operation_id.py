@@ -21,22 +21,21 @@ import json
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
 
-class AddCardPartnerParams(BaseModel):
+class PickAddCardPartnerParamsExcludeKeyofAddCardPartnerParamsOperationId(BaseModel):
     """
-    AddCardPartnerParams
+    From T, pick a set of properties whose keys are in the union K  # noqa: E501
     """
+    number: StrictStr = Field(...)
     name: StrictStr = Field(...)
     cardtype: StrictStr = Field(...)
-    number: StrictStr = Field(...)
     is_primary: StrictBool = Field(..., alias="isPrimary")
     name_on_card: StrictStr = Field(..., alias="nameOnCard")
     expiration_date: StrictStr = Field(..., alias="expirationDate")
     security_code: Optional[StrictStr] = Field(None, alias="securityCode")
     currency: Optional[StrictStr] = None
     country: StrictStr = Field(...)
-    operation_id: Optional[StrictStr] = Field(None, alias="operationId")
     card_network: StrictStr = Field(..., alias="cardNetwork")
-    __properties = ["name", "cardtype", "number", "isPrimary", "nameOnCard", "expirationDate", "securityCode", "currency", "country", "operationId", "cardNetwork"]
+    __properties = ["number", "name", "cardtype", "isPrimary", "nameOnCard", "expirationDate", "securityCode", "currency", "country", "cardNetwork"]
 
     @validator('cardtype')
     def cardtype_validate_enum(cls, value):
@@ -66,8 +65,8 @@ class AddCardPartnerParams(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> AddCardPartnerParams:
-        """Create an instance of AddCardPartnerParams from a JSON string"""
+    def from_json(cls, json_str: str) -> PickAddCardPartnerParamsExcludeKeyofAddCardPartnerParamsOperationId:
+        """Create an instance of PickAddCardPartnerParamsExcludeKeyofAddCardPartnerParamsOperationId from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -79,25 +78,24 @@ class AddCardPartnerParams(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> AddCardPartnerParams:
-        """Create an instance of AddCardPartnerParams from a dict"""
+    def from_dict(cls, obj: dict) -> PickAddCardPartnerParamsExcludeKeyofAddCardPartnerParamsOperationId:
+        """Create an instance of PickAddCardPartnerParamsExcludeKeyofAddCardPartnerParamsOperationId from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return AddCardPartnerParams.parse_obj(obj)
+            return PickAddCardPartnerParamsExcludeKeyofAddCardPartnerParamsOperationId.parse_obj(obj)
 
-        _obj = AddCardPartnerParams.parse_obj({
+        _obj = PickAddCardPartnerParamsExcludeKeyofAddCardPartnerParamsOperationId.parse_obj({
+            "number": obj.get("number"),
             "name": obj.get("name"),
             "cardtype": obj.get("cardtype"),
-            "number": obj.get("number"),
             "is_primary": obj.get("isPrimary"),
             "name_on_card": obj.get("nameOnCard"),
             "expiration_date": obj.get("expirationDate"),
             "security_code": obj.get("securityCode"),
             "currency": obj.get("currency"),
             "country": obj.get("country"),
-            "operation_id": obj.get("operationId"),
             "card_network": obj.get("cardNetwork")
         })
         return _obj

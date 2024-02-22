@@ -28,6 +28,7 @@ class PickOperationDetailResponseExcludeKeyofOperationDetailResponseIdOrTypeOrSh
     """
     From T, pick a set of properties whose keys are in the union K  # noqa: E501
     """
+    currency: Optional[StrictStr] = None
     plat_id: Optional[StrictStr] = Field(None, alias="platId")
     correlation_id: StrictStr = Field(..., alias="correlationId")
     created_at: datetime = Field(..., alias="createdAt")
@@ -39,7 +40,6 @@ class PickOperationDetailResponseExcludeKeyofOperationDetailResponseIdOrTypeOrSh
     code: StrictStr = Field(...)
     recipient_amout: Union[StrictFloat, StrictInt] = Field(..., alias="recipientAmout")
     sender_amount: Optional[Union[StrictFloat, StrictInt]] = Field(None, alias="senderAmount")
-    currency: Optional[StrictStr] = None
     sender_currency: Optional[StrictStr] = Field(None, alias="senderCurrency")
     recipient_currency: Optional[StrictStr] = Field(None, alias="recipientCurrency")
     source_payment_method: Optional[PaymentMethodResponse] = Field(None, alias="sourcePaymentMethod")
@@ -55,7 +55,7 @@ class PickOperationDetailResponseExcludeKeyofOperationDetailResponseIdOrTypeOrSh
     is_ignored: Optional[StrictBool] = Field(None, alias="isIgnored")
     ignored_data: Optional[IgnoredOperationData] = Field(None, alias="ignoredData")
     tenantfee: Optional[Union[StrictFloat, StrictInt]] = None
-    __properties = ["platId", "correlationId", "createdAt", "amount", "status", "statusDetails", "mobileStatus", "reason", "code", "recipientAmout", "senderAmount", "currency", "senderCurrency", "recipientCurrency", "sourcePaymentMethod", "destinationPaymentMethod", "sourceFee", "transactionFee", "destinationFee", "exchangeRate", "hasReferenceCode", "fromUser", "toUser", "attributionLink", "isIgnored", "ignoredData", "tenantfee"]
+    __properties = ["currency", "platId", "correlationId", "createdAt", "amount", "status", "statusDetails", "mobileStatus", "reason", "code", "recipientAmout", "senderAmount", "senderCurrency", "recipientCurrency", "sourcePaymentMethod", "destinationPaymentMethod", "sourceFee", "transactionFee", "destinationFee", "exchangeRate", "hasReferenceCode", "fromUser", "toUser", "attributionLink", "isIgnored", "ignoredData", "tenantfee"]
 
     class Config:
         """Pydantic configuration"""
@@ -108,6 +108,7 @@ class PickOperationDetailResponseExcludeKeyofOperationDetailResponseIdOrTypeOrSh
             return PickOperationDetailResponseExcludeKeyofOperationDetailResponseIdOrTypeOrShowWarningScreen.parse_obj(obj)
 
         _obj = PickOperationDetailResponseExcludeKeyofOperationDetailResponseIdOrTypeOrShowWarningScreen.parse_obj({
+            "currency": obj.get("currency"),
             "plat_id": obj.get("platId"),
             "correlation_id": obj.get("correlationId"),
             "created_at": obj.get("createdAt"),
@@ -119,7 +120,6 @@ class PickOperationDetailResponseExcludeKeyofOperationDetailResponseIdOrTypeOrSh
             "code": obj.get("code"),
             "recipient_amout": obj.get("recipientAmout"),
             "sender_amount": obj.get("senderAmount"),
-            "currency": obj.get("currency"),
             "sender_currency": obj.get("senderCurrency"),
             "recipient_currency": obj.get("recipientCurrency"),
             "source_payment_method": PaymentMethodResponse.from_dict(obj.get("sourcePaymentMethod")) if obj.get("sourcePaymentMethod") is not None else None,

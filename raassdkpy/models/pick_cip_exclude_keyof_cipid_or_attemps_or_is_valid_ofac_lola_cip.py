@@ -66,9 +66,7 @@ class PickCIPExcludeKeyofCIPIdOrAttempsOrIsValidOFACLolaCIP(BaseModel):
 
         _obj = PickCIPExcludeKeyofCIPIdOrAttempsOrIsValidOFACLolaCIP.parse_obj({
             "update_at": obj.get("updateAt"),
-            "updateAt": obj.get("updateAt"),
-            "in_progress": obj.get("inProgress"),
-            "inProgress": obj.get("inProgress")
+            "in_progress": obj.get("inProgress")
         })
         return _obj
 

@@ -71,15 +71,10 @@ class RaasPreQuoteValues(BaseModel):
 
         _obj = RaasPreQuoteValues.parse_obj({
             "exchange_rate": obj.get("ExchangeRate"),
-            "ExchangeRate": obj.get("ExchangeRate"),
             "source_fee": obj.get("SourceFee"),
-            "SourceFee": obj.get("SourceFee"),
             "transaction_fee": obj.get("TransactionFee"),
-            "TransactionFee": obj.get("TransactionFee"),
             "destination_fee": obj.get("DestinationFee"),
-            "DestinationFee": obj.get("DestinationFee"),
             "tenant_fee": obj.get("TenantFee"),
-            "TenantFee": obj.get("TenantFee"),
             "type": obj.get("Type")
         })
         return _obj
