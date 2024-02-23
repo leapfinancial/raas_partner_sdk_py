@@ -29,7 +29,7 @@ class RaasQuoteTransactionResponse(BaseModel):
     source_currency: StrictStr = Field(..., alias="sourceCurrency")
     destination_currency: StrictStr = Field(..., alias="destinationCurrency")
     reason: StrictStr = Field(...)
-    reason_detail: Dict[str, Any] = Field(..., alias="reasonDetail")
+    reason_detail: StrictStr = Field(..., alias="reasonDetail")
     source_amount: Union[StrictFloat, StrictInt] = Field(..., alias="sourceAmount")
     amount: Union[StrictFloat, StrictInt] = Field(...)
     destination_amount: Union[StrictFloat, StrictInt] = Field(..., alias="destinationAmount")
